@@ -1,4 +1,4 @@
-<div class="apidocDiv">
+<html><head></head><body><div class="apidocDiv">
 <style>
 /*csslint
 */
@@ -47,17 +47,10 @@
 }
 </style>
 <h1>api documentation for
-    <a
-
-        href="https://benchmarkjs.com/"
-
-    >benchmark (v2.1.4)</a>
+    <a href="https://benchmarkjs.com/">benchmark (v2.1.4)</a>
 </h1>
-<h4>A benchmarking library that supports high-resolution timers & returns statistically significant results.</h4>
-<div class="apidocSectionDiv"><a
-    href="#apidoc.tableOfContents"
-    id="apidoc.tableOfContents"
-><h1>table of contents</h1></a><ol>
+<h4>A benchmarking library that supports high-resolution timers &amp; returns statistically significant results.</h4>
+<div class="apidocSectionDiv"><a href="#apidoc.tableOfContents" id="apidoc.tableOfContents"><h1>table of contents</h1></a><ol>
 
     <li class="apidocModuleLi"><a href="#apidoc.module.benchmark">module benchmark</a><ol>
 
@@ -1047,7 +1040,7 @@
   setOptions(bench, options);
 
   bench.id || (bench.id = ++counter);
-  bench.fn == null &#x26;&#x26; (bench.fn = fn);
+  bench.fn == null &amp;&amp; (bench.fn = fn);
 
   bench.stats = cloneDeep(bench.stats);
   bench.times = cloneDeep(bench.times);
@@ -1094,7 +1087,7 @@
   setOptions(bench, options);
 
   bench.id || (bench.id = ++counter);
-  bench.fn == null &#x26;&#x26; (bench.fn = fn);
+  bench.fn == null &amp;&amp; (bench.fn = fn);
 
   bench.stats = cloneDeep(bench.stats);
   bench.times = cloneDeep(bench.times);
@@ -1137,7 +1130,7 @@
     return type;
   }
   return (event instanceof Event)
-    ? _.assign(event, { &#x27;timeStamp&#x27;: _.now() }, typeof type == &#x27;string&#x27; ? { &#x27;type&#x27;: type } : type)
+    ? _.assign(event, { 'timeStamp': _.now() }, typeof type == 'string' ? { 'type': type } : type)
     : new Event(type);
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
@@ -1177,13 +1170,13 @@
 * var suite = new Benchmark.Suite;
 *
 * // or using a name first
-* var suite = new Benchmark.<span class="apidocCodeKeywordSpan">Suite</span>(&#x27;foo&#x27;);
+* var suite = new Benchmark.<span class="apidocCodeKeywordSpan">Suite</span>('foo');
 *
 * // or with options
-* var suite = new Benchmark.Suite(&#x27;foo&#x27;, {
+* var suite = new Benchmark.Suite('foo', {
 *
 *   // called when the suite starts running
-*   &#x27;onStart&#x27;: onStart,
+*   'onStart': onStart,
 *
 ...</pre></li>
     </ul>
@@ -1209,7 +1202,7 @@ _.forOwn(options, function(value, key) {
   if (value != null) {
     // Add event listeners.
     if (/^on[A-Z]/.test(key)) {
-      _.<span class="apidocCodeKeywordSpan">each</span>(key.split(&#x27; &#x27;), function(key) {
+      _.<span class="apidocCodeKeywordSpan">each</span>(key.split(' '), function(key) {
         object.on(key.slice(2).toLowerCase(), value);
       });
     } else if (!_.has(object, key)) {
@@ -1230,17 +1223,17 @@ _.forOwn(options, function(value, key) {
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">function filter(array, callback) {
-  if (callback === &#x27;successful&#x27;) {
+  if (callback === 'successful') {
     // Callback to exclude those that are errored, unrun, or have hz of Infinity.
     callback = function(bench) {
-      return bench.cycles &#x26;&#x26; _.isFinite(bench.hz) &#x26;&#x26; !bench.error;
+      return bench.cycles &amp;&amp; _.isFinite(bench.hz) &amp;&amp; !bench.error;
     };
   }
-  else if (callback === &#x27;fastest&#x27; || callback === &#x27;slowest&#x27;) {
+  else if (callback === 'fastest' || callback === 'slowest') {
     // Get successful, sort by period + margin of error, and filter fastest/slowest.
-    var result = filter(array, &#x27;successful&#x27;).sort(function(a, b) {
+    var result = filter(array, 'successful').sort(function(a, b) {
       a = a.stats; b = b.stats;
-      return (a.mean + a.moe &#x3e; b.mean + b.moe ? 1 : -1) * (callback === &#x27;fastest&#x27; ? 1 : -1);
+      return (a.mean + a.moe &gt; b.mean + b.moe ? 1 : -1) * (callback === 'fastest' ? 1 : -1);
     });
 
     return _.filter(result, function(bench) {
@@ -1250,22 +1243,22 @@ _.forOwn(options, function(value, key) {
   return _.filter(array, callback);
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
-  &#x27;Hello World!&#x27;.indexOf(&#x27;o&#x27;) &#x3e; -1;
+  'Hello World!'.indexOf('o') &gt; -1;
 })
 // add listeners
-.on(&#x27;cycle&#x27;, function(event) {
+.on('cycle', function(event) {
   console.log(String(event.target));
 })
-.on(&#x27;complete&#x27;, function() {
-  console.log(&#x27;Fastest is &#x27; + this.<span class="apidocCodeKeywordSpan">filter</span>(&#x27;fastest&#x27;).map(&#x27;name
-&#x27;));
+.on('complete', function() {
+  console.log('Fastest is ' + this.<span class="apidocCodeKeywordSpan">filter</span>('fastest').map('name
+'));
 })
 // run async
-.run({ &#x27;async&#x27;: true });
+.run({ 'async': true });
 
 // logs:
-// =&#x3e; RegExp#test x 4,161,532 +-0.99% (59 cycles)
-// =&#x3e; String#indexOf x 6,139,623 +-1.00% (131 cycles)
+// =&gt; RegExp#test x 4,161,532 +-0.99% (59 cycles)
+// =&gt; String#indexOf x 6,139,623 +-1.00% (131 cycles)
 ...</pre></li>
     </ul>
 
@@ -1295,7 +1288,7 @@ _.forOwn(options, function(value, key) {
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">function forOwn(object, iteratee) {
-  return object &#x26;&#x26; baseForOwn(object, getIteratee(iteratee, 3));
+  return object &amp;&amp; baseForOwn(object, getIteratee(iteratee, 3));
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
      * @private
@@ -1309,7 +1302,7 @@ _.<span class="apidocCodeKeywordSpan">forOwn</span>(options, function(value, key
   if (value != null) {
     // Add event listeners.
     if (/^on[A-Z]/.test(key)) {
-      _.each(key.split(&#x27; &#x27;), function(key) {
+      _.each(key.split(' '), function(key) {
         object.on(key.slice(2).toLowerCase(), value);
       });
     } else if (!_.has(object, key)) {
@@ -1326,9 +1319,9 @@ _.<span class="apidocCodeKeywordSpan">forOwn</span>(options, function(value, key
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">function formatNumber(number) {
-  number = String(number).split(&#x27;.&#x27;);
-  return number[0].replace(/(?=(?:\d{3})+$)(?!\b)/g, &#x27;,&#x27;) +
-    (number[1] ? &#x27;.&#x27; + number[1] : &#x27;&#x27;);
+  number = String(number).split('.');
+  return number[0].replace(/(?=(?:\d{3})+$)(?!\b)/g, ',') +
+    (number[1] ? '.' + number[1] : '');
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
@@ -1343,18 +1336,18 @@ _.<span class="apidocCodeKeywordSpan">forOwn</span>(options, function(value, key
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">function has(object, path) {
-  return object != null &#x26;&#x26; hasPath(object, path, baseHas);
+  return object != null &amp;&amp; hasPath(object, path, baseHas);
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
- * Gets the name of the first argument from a function&#x27;s source.
+ * Gets the name of the first argument from a function's source.
  *
  * @private
  * @param {Function} fn The function.
  * @returns {string} The argument name.
  */
 function getFirstArgument(fn) {
-  return (!_.<span class="apidocCodeKeywordSpan">has</span>(fn, &#x27;toString&#x27;) &#x26;&#x26;
-    (/^[\s(]*function[^(]*\(([^\s,)]+)/.exec(fn) || 0)[1]) || &#x27;&#x27;;
+  return (!_.<span class="apidocCodeKeywordSpan">has</span>(fn, 'toString') &amp;&amp;
+    (/^[\s(]*function[^(]*\(([^\s,)]+)/.exec(fn) || 0)[1]) || '';
 }
 
 /**
@@ -1379,7 +1372,7 @@ function getFirstArgument(fn) {
     return -1;
   }
   var index = fromIndex == null ? 0 : toInteger(fromIndex);
-  if (index &#x3c; 0) {
+  if (index &lt; 0) {
     index = nativeMax(length + index, 0);
   }
   return baseIndexOf(array, value, index);
@@ -1388,18 +1381,18 @@ function getFirstArgument(fn) {
 var suite = new Benchmark.Suite;
 
 // add tests
-suite.add(&#x27;RegExp#test&#x27;, function() {
-/o/.test(&#x27;Hello World!&#x27;);
+suite.add('RegExp#test', function() {
+/o/.test('Hello World!');
 })
-.add(&#x27;String#indexOf&#x27;, function() {
-&#x27;Hello World!&#x27;.<span class="apidocCodeKeywordSpan">indexOf</span>(&#x27;o&#x27;) &#x3e; -1;
+.add('String#indexOf', function() {
+'Hello World!'.<span class="apidocCodeKeywordSpan">indexOf</span>('o') &gt; -1;
 })
 // add listeners
-.on(&#x27;cycle&#x27;, function(event) {
+.on('cycle', function(event) {
 console.log(String(event.target));
 })
-.on(&#x27;complete&#x27;, function() {
-console.log(&#x27;Fastest is &#x27; + this.filter(&#x27;fastest&#x27;).map(&#x27;name&#x27;));
+.on('complete', function() {
+console.log('Fastest is ' + this.filter('fastest').map('name'));
 ...</pre></li>
     </ul>
 
@@ -1417,8 +1410,8 @@ console.log(&#x27;Fastest is &#x27; + this.filter(&#x27;fastest&#x27;).map(&#x27
       bench,
       queued,
       index = -1,
-      eventProps = { &#x27;currentTarget&#x27;: benches },
-      options = { &#x27;onStart&#x27;: _.noop, &#x27;onCycle&#x27;: _.noop, &#x27;onComplete&#x27;: _.noop },
+      eventProps = { 'currentTarget': benches },
+      options = { 'onStart': _.noop, 'onCycle': _.noop, 'onComplete': _.noop },
       result = _.toArray(benches);
 
 <span class="apidocCodeCommentSpan">  /**
@@ -1430,14 +1423,14 @@ console.log(&#x27;Fastest is &#x27; + this.filter(&#x27;fastest&#x27;).map(&#x27
 
     if (async) {
       // Use `getNext` as the first listener.
-      bench.on(&#x27;complete&#x27;, getNext);
+      bench.on('complete', getNext);
       listeners = bench.events.complete;
       listeners.splice(0, 0, listeners.pop());
     }
     // Execute method.
-    result[index] = _.isFunction(bench &#x26;&#x26; bench[name]) ? bench[name].apply(bench, args) : undefined;
+    result[index] = _.isFunction(bench &amp;&amp; bench[name]) ? bench[name].apply(bench, args) : undefined;
     // If synchronous return `true` until finished.
-    return !async &#x26;&#x26; getNext();
+    return !async &amp;&amp; getNext();
   }
 
   /**
@@ -1449,17 +1442,17 @@ console.log(&#x27;Fastest is &#x27; + this.filter(&#x27;fastest&#x27;).map(&#x27
         async = isAsync(last);
 
     if (async) {
-      last.off(&#x27;complete&#x27;, getNext);
-      last.emit(&#x27;complete&#x27;);
+      last.off('complete', getNext);
+      last.emit('complete');
     }
-    // Emit &#x22;cycle&#x22; event.
-    eventProps.type = &#x27;cycle&#x27;;
+    // Emit "cycle" event.
+    eventProps.type = 'cycle';
     eventProps.target = last;
     cycleEvent = Event(eventProps);
     options.onCycle.call(benches, cycleEvent);
 
     // Choose next benchmark if not exiting early.
-    if (!cycleEvent.aborted &#x26;&#x26; raiseIndex() !== false) {
+    if (!cycleEvent.aborted &amp;&amp; raiseIndex() !== false) {
       bench = queued ? benches[0] : result[index];
       if (isAsync(bench)) {
         delay(bench, execute);
@@ -1473,12 +1466,12 @@ console.log(&#x27;Fastest is &#x27; + this.filter(&#x27;fastest&#x27;).map(&#x27
         return true;
       }
     } else {
-      // Emit &#x22;complete&#x22; event.
-      eventProps.type = &#x27;complete&#x27;;
+      // Emit "complete" event.
+      eventProps.type = 'complete';
       options.onComplete.call(benches, Event(eventProps));
     }
     // When used as a listener `event.aborted = true` will cancel the rest of
-    // the &#x22;complete&#x22; listeners because they were already called above and when
+    // the "complete" listeners because they were already called above and when
     // used as part of `getNext` the `return false` will exit the execution while-loop.
     if (event) {
       event.aborted = true;
@@ -1492,9 +1485,9 @@ console.log(&#x27;Fastest is &#x27; + this.filter(&#x27;fastest&#x27;).map(&#x27
    */
   function isAsync(object) {
     // Avoid using `instanceof` here because of IE memory leak issues with host objects.
-    var async = args[0] &#x26;&#x26; args[0].async;
-    return name == &#x27;run&#x27; &#x26;&#x26; (object instanceof Benchmark) &#x26;&#x26;
-      ((async == null ? object.options.async : async) &#x26;&#x26; support.timeout || object.defer);
+    var async = args[0] &amp;&amp; args[0].async;
+    return name == 'run' &amp;&amp; (object instanceof Benchmark) &amp;&amp;
+      ((async == null ? object.options.async : async) &amp;&amp; support.timeout || object.defer);
   }
 
   /**
@@ -1504,11 +1497,11 @@ console.log(&#x27;Fastest is &#x27; + this.filter(&#x27;fastest&#x27;).map(&#x27
     index++;
 
     // If queued remove the previous bench.
-    if (queued &#x26;&#x26; index &#x3e; 0) {
+    if (queued &amp;&amp; index &gt; 0) {
       shift.call(benches);
     }
     // If we reached the last index then return `false`.
-    return (queued ? benches.length : index &#x3c; result.length)
+    return (queued ? benches.length : index &lt; result.length)
       ? index
       : (index = false);
   }
@@ -1520,24 +1513,24 @@ console.log(&#x27;Fastest is &#x27; + this.filter(&#x27;fastest&#x27;).map(&#x27
     // 2 arguments (array, options).
     options = _.assign(options, name);
     name = options.name;
-    args = _.isArray(args = &#x27;args&#x27; in options ? options.args : []) ? args : [args];
+    args = _.isArray(args = 'args' in options ? options.args : []) ? args : [args];
     queued = options.queued;
   }
   // Start iterating over the array.
   if (raiseIndex() !== false) {
-    // Emit &#x22;start&#x22; event.
+    // Emit "start" event.
     bench = result[index];
-    eventProps.type = &#x27;start&#x27;;
+    eventProps.type = 'start';
     eventProps.target = bench;
     options.onStart.call(benches, Event(eventProps));
 
-    // End early if the suite was aborted in an &#x22;onStart&#x22; listener.
-    if (name == &#x27;run&#x27; &#x26;&#x26; (benches instanceof Suite) &#x26;&#x26; benches.aborted) {
-      // Emit &#x22;cycle&#x22; event.
-      eventProps.type = &#x27;cycle&#x27;;
+    // End early if the suite was aborted in an "onStart" listener.
+    if (name == 'run' &amp;&amp; (benches instanceof Suite) &amp;&amp; benches.aborted) {
+      // Emit "cycle" event.
+      eventProps.type = 'cycle';
       options.onCycle.call(benches, Event(eventProps));
-      // Emit &#x22;complete&#x22; event.
-      eventProps.type = &#x27;complete&#x27;;
+      // Emit "complete" event.
+      eventProps.type = 'complete';
       options.onComplete.call(benches, Event(eventProps));
     }
     // Start method execution.
@@ -1554,10 +1547,10 @@ console.log(&#x27;Fastest is &#x27; + this.filter(&#x27;fastest&#x27;).map(&#x27
 * @example
 *
 * // invoke `reset` on all benchmarks
-* Benchmark.<span class="apidocCodeKeywordSpan">invoke</span>(benches, &#x27;reset&#x27;);
+* Benchmark.<span class="apidocCodeKeywordSpan">invoke</span>(benches, 'reset');
 *
 * // invoke `emit` with arguments
-* Benchmark.invoke(benches, &#x27;emit&#x27;, &#x27;complete&#x27;, listener);
+* Benchmark.invoke(benches, 'emit', 'complete', listener);
 *
 * // invoke `run(true)`, treat benchmarks as a queue, and register invoke callbacks
 * Benchmark.invoke(benches, {
@@ -1577,23 +1570,23 @@ console.log(&#x27;Fastest is &#x27; + this.filter(&#x27;fastest&#x27;).map(&#x27
     <li>description and source-code<pre class="apidocCodePre">function join(object, separator1, separator2) {
   var result = [],
       length = (object = Object(object)).length,
-      arrayLike = length === length &#x3e;&#x3e;&#x3e; 0;
+      arrayLike = length === length &gt;&gt;&gt; 0;
 
-  separator2 || (separator2 = &#x27;: &#x27;);
+  separator2 || (separator2 = ': ');
   _.each(object, function(value, key) {
     result.push(arrayLike ? value : key + separator2 + value);
   });
-  return result.join(separator1 || &#x27;,&#x27;);
+  return result.join(separator1 || ',');
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
       length = (object = Object(object)).length,
-      arrayLike = length === length &#x3e;&#x3e;&#x3e; 0;
+      arrayLike = length === length &gt;&gt;&gt; 0;
 
-  separator2 || (separator2 = &#x27;: &#x27;);
+  separator2 || (separator2 = ': ');
   _.each(object, function(value, key) {
     result.push(arrayLike ? value : key + separator2 + value);
   });
-  return result.<span class="apidocCodeKeywordSpan">join</span>(separator1 || &#x27;,&#x27;);
+  return result.<span class="apidocCodeKeywordSpan">join</span>(separator1 || ',');
 }
 
 /*------------------------------------------------------------------------*/
@@ -1618,22 +1611,22 @@ console.log(&#x27;Fastest is &#x27; + this.filter(&#x27;fastest&#x27;).map(&#x27
   return func(collection, getIteratee(iteratee, 3));
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
-  &#x27;Hello World!&#x27;.indexOf(&#x27;o&#x27;) &#x3e; -1;
+  'Hello World!'.indexOf('o') &gt; -1;
 })
 // add listeners
-.on(&#x27;cycle&#x27;, function(event) {
+.on('cycle', function(event) {
   console.log(String(event.target));
 })
-.on(&#x27;complete&#x27;, function() {
-  console.log(&#x27;Fastest is &#x27; + this.filter(&#x27;fastest&#x27;).<span class="apidocCodeKeywordSpan">map</span>(&#x27;name
-&#x27;));
+.on('complete', function() {
+  console.log('Fastest is ' + this.filter('fastest').<span class="apidocCodeKeywordSpan">map</span>('name
+'));
 })
 // run async
-.run({ &#x27;async&#x27;: true });
+.run({ 'async': true });
 
 // logs:
-// =&#x3e; RegExp#test x 4,161,532 +-0.99% (59 cycles)
-// =&#x3e; String#indexOf x 6,139,623 +-1.00% (131 cycles)
+// =&gt; RegExp#test x 4,161,532 +-0.99% (59 cycles)
+// =&gt; String#indexOf x 6,139,623 +-1.00% (131 cycles)
 ...</pre></li>
     </ul>
 
@@ -1648,7 +1641,7 @@ console.log(&#x27;Fastest is &#x27; + this.filter(&#x27;fastest&#x27;).map(&#x27
     <ul>
     <li>description and source-code<pre class="apidocCodePre">function reduce(collection, iteratee, accumulator) {
   var func = isArray(collection) ? arrayReduce : baseReduce,
-      initAccum = arguments.length &#x3c; 3;
+      initAccum = arguments.length &lt; 3;
 
   return func(collection, getIteratee(iteratee, 4), accumulator, initAccum, baseEach);
 }</pre></li>
@@ -1682,7 +1675,7 @@ function getMean(sample) {
     <ul>
     <li>description and source-code<pre class="apidocCodePre">function runInContext(context) {
   // Exit early if unable to acquire lodash.
-  var _ = context &#x26;&#x26; context._ || require(&#x27;lodash&#x27;) || root._;
+  var _ = context &amp;&amp; context._ || require('lodash') || root._;
   if (!_) {
     Benchmark.runInContext = runInContext;
     return Benchmark;
@@ -1726,19 +1719,19 @@ function getMean(sample) {
   var req = require;
 
   /** Detect DOM document object. */
-  var doc = isHostType(context, &#x27;document&#x27;) &#x26;&#x26; context.document;
+  var doc = isHostType(context, 'document') &amp;&amp; context.document;
 
-  /** Used to access Wade Simmons&#x27; Node.js `microtime` module. */
-  var microtimeObject = req(&#x27;microtime&#x27;);
+  /** Used to access Wade Simmons' Node.js `microtime` module. */
+  var microtimeObject = req('microtime');
 
-  /** Used to access Node.js&#x27;s high resolution timer. */
-  var processObject = isHostType(context, &#x27;process&#x27;) &#x26;&#x26; context.process;
+  /** Used to access Node.js's high resolution timer. */
+  var processObject = isHostType(context, 'process') &amp;&amp; context.process;
 
-  /** Used to prevent a `removeChild` memory leak in IE &#x3c; 9. */
-  var trash = doc &#x26;&#x26; doc.createElement(&#x27;div&#x27;);
+  /** Used to prevent a `removeChild` memory leak in IE &lt; 9. */
+  var trash = doc &amp;&amp; doc.createElement('div');
 
   /** Used to integrity check compiled tests. */
-  var uid = &#x27;uid&#x27; + _.now();
+  var uid = 'uid' + _.now();
 
   /** Used to avoid infinite recursion when methods call each other. */
   var calledBy = {};
@@ -1760,7 +1753,7 @@ function getMean(sample) {
      * @memberOf Benchmark.support
      * @type boolean
      */
-    support.browser = doc &#x26;&#x26; isHostType(context, &#x27;navigator&#x27;) &#x26;&#x26; !isHostType(context, &#x27;phantom&#x27;);
+    support.browser = doc &amp;&amp; isHostType(context, 'navigator') &amp;&amp; !isHostType(context, 'phantom');
 
     /**
      * Detect if the Timers API exists.
@@ -1768,7 +1761,7 @@ function getMean(sample) {
      * @memberOf Benchmark.support
      * @type boolean
      */
-    support.timeout = isHostType(context, &#x27;setTimeout&#x27;) &#x26;&#x26; isHostType(context, &#x27;clearTimeout&#x27;);
+    support.timeout = isHostType(context, 'setTimeout') &amp;&amp; isHostType(context, 'clearTimeout');
 
     /**
      * Detect if function decompilation is support.
@@ -1783,10 +1776,10 @@ function getMean(sample) {
       // Firefox 3.6 and Opera 9.25 strip grouping parentheses from `Function#toString` results.
       // See http://bugzil.la/559438 for more details.
       support.decompilation = Function(
-        (&#x27;return (&#x27; + (function(x) { return { &#x27;x&#x27;: &#x27;&#x27; + (1 + x) + &#x27;&#x27;, &#x27;y&#x27;: 0 }; }) + &#x27;)&#x27;)
+        ('return (' + (function(x) { return { 'x': '' + (1 + x) + '', 'y': 0 }; }) + ')')
         // Avoid issues with code added by Istanbul.
-        .replace(/__cov__[^;]+;/g, &#x27;&#x27;)
-      )()(0).x === &#x27;1&#x27;;
+        .replace(/__cov__[^;]+;/g, '')
+      )()(0).x === '1';
     } catch(e) {
       support.decompilation = false;
     }
@@ -1807,7 +1800,7 @@ function getMean(sample) {
      * @memberOf timer
      * @type {Function|Object}
      */
-    &#x27;ns&#x27;: Date,
+    'ns': Date,
 
     /**
      * Starts the deferred timer.
@@ -1816,7 +1809,7 @@ function getMean(sample) {
      * @memberOf timer
      * @param {Object} deferred The deferred instance.
      */
-    &#x27;start&#x27;: null, // Lazy defined in `clock()`.
+    'start': null, // Lazy defined in `clock()`.
 
     /**
      * Stops the deferred timer.
@@ -1887,7 +1880,7 @@ function getMean(sample) {
   setOptions(bench, options);
 
   bench.id || (bench.id = ++counter);
-  bench.fn == null &#x26;&#x26; (bench.fn = fn);
+  bench.fn == null &amp;&amp; (bench.fn = fn);
 
   bench.stats = cloneDeep(bench.stats);
   bench.times = cloneDeep(bench.times);
@@ -1930,7 +1923,7 @@ function getMean(sample) {
     return type;
   }
   return (event instanceof Event)
-    ? _.assign(event, { &#x27;timeStamp&#x27;: _.now() }, typeof type == &#x27;string&#x27; ? { &#x27;type&#x27;: type } : type)
+    ? _.assign(event, { 'timeStamp': _.now() }, typeof type == 'string' ? { 'type': type } : type)
     : new Event(type);
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
@@ -1970,13 +1963,13 @@ function getMean(sample) {
 * var suite = new Benchmark.Suite;
 *
 * // or using a name first
-* var suite = new Benchmark.<span class="apidocCodeKeywordSpan">Suite</span>(&#x27;foo&#x27;);
+* var suite = new Benchmark.<span class="apidocCodeKeywordSpan">Suite</span>('foo');
 *
 * // or with options
-* var suite = new Benchmark.Suite(&#x27;foo&#x27;, {
+* var suite = new Benchmark.Suite('foo', {
 *
 *   // called when the suite starts running
-*   &#x27;onStart&#x27;: onStart,
+*   'onStart': onStart,
 *
 ...</pre></li>
     </ul>
@@ -2002,7 +1995,7 @@ _.forOwn(options, function(value, key) {
   if (value != null) {
     // Add event listeners.
     if (/^on[A-Z]/.test(key)) {
-      _.<span class="apidocCodeKeywordSpan">each</span>(key.split(&#x27; &#x27;), function(key) {
+      _.<span class="apidocCodeKeywordSpan">each</span>(key.split(' '), function(key) {
         object.on(key.slice(2).toLowerCase(), value);
       });
     } else if (!_.has(object, key)) {
@@ -2023,17 +2016,17 @@ _.forOwn(options, function(value, key) {
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">function filter(array, callback) {
-  if (callback === &#x27;successful&#x27;) {
+  if (callback === 'successful') {
     // Callback to exclude those that are errored, unrun, or have hz of Infinity.
     callback = function(bench) {
-      return bench.cycles &#x26;&#x26; _.isFinite(bench.hz) &#x26;&#x26; !bench.error;
+      return bench.cycles &amp;&amp; _.isFinite(bench.hz) &amp;&amp; !bench.error;
     };
   }
-  else if (callback === &#x27;fastest&#x27; || callback === &#x27;slowest&#x27;) {
+  else if (callback === 'fastest' || callback === 'slowest') {
     // Get successful, sort by period + margin of error, and filter fastest/slowest.
-    var result = filter(array, &#x27;successful&#x27;).sort(function(a, b) {
+    var result = filter(array, 'successful').sort(function(a, b) {
       a = a.stats; b = b.stats;
-      return (a.mean + a.moe &#x3e; b.mean + b.moe ? 1 : -1) * (callback === &#x27;fastest&#x27; ? 1 : -1);
+      return (a.mean + a.moe &gt; b.mean + b.moe ? 1 : -1) * (callback === 'fastest' ? 1 : -1);
     });
 
     return _.filter(result, function(bench) {
@@ -2043,22 +2036,22 @@ _.forOwn(options, function(value, key) {
   return _.filter(array, callback);
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
-  &#x27;Hello World!&#x27;.indexOf(&#x27;o&#x27;) &#x3e; -1;
+  'Hello World!'.indexOf('o') &gt; -1;
 })
 // add listeners
-.on(&#x27;cycle&#x27;, function(event) {
+.on('cycle', function(event) {
   console.log(String(event.target));
 })
-.on(&#x27;complete&#x27;, function() {
-  console.log(&#x27;Fastest is &#x27; + this.<span class="apidocCodeKeywordSpan">filter</span>(&#x27;fastest&#x27;).map(&#x27;name
-&#x27;));
+.on('complete', function() {
+  console.log('Fastest is ' + this.<span class="apidocCodeKeywordSpan">filter</span>('fastest').map('name
+'));
 })
 // run async
-.run({ &#x27;async&#x27;: true });
+.run({ 'async': true });
 
 // logs:
-// =&#x3e; RegExp#test x 4,161,532 +-0.99% (59 cycles)
-// =&#x3e; String#indexOf x 6,139,623 +-1.00% (131 cycles)
+// =&gt; RegExp#test x 4,161,532 +-0.99% (59 cycles)
+// =&gt; String#indexOf x 6,139,623 +-1.00% (131 cycles)
 ...</pre></li>
     </ul>
 
@@ -2088,7 +2081,7 @@ _.forOwn(options, function(value, key) {
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">function forOwn(object, iteratee) {
-  return object &#x26;&#x26; baseForOwn(object, getIteratee(iteratee, 3));
+  return object &amp;&amp; baseForOwn(object, getIteratee(iteratee, 3));
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
      * @private
@@ -2102,7 +2095,7 @@ _.<span class="apidocCodeKeywordSpan">forOwn</span>(options, function(value, key
   if (value != null) {
     // Add event listeners.
     if (/^on[A-Z]/.test(key)) {
-      _.each(key.split(&#x27; &#x27;), function(key) {
+      _.each(key.split(' '), function(key) {
         object.on(key.slice(2).toLowerCase(), value);
       });
     } else if (!_.has(object, key)) {
@@ -2119,9 +2112,9 @@ _.<span class="apidocCodeKeywordSpan">forOwn</span>(options, function(value, key
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">function formatNumber(number) {
-  number = String(number).split(&#x27;.&#x27;);
-  return number[0].replace(/(?=(?:\d{3})+$)(?!\b)/g, &#x27;,&#x27;) +
-    (number[1] ? &#x27;.&#x27; + number[1] : &#x27;&#x27;);
+  number = String(number).split('.');
+  return number[0].replace(/(?=(?:\d{3})+$)(?!\b)/g, ',') +
+    (number[1] ? '.' + number[1] : '');
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
@@ -2136,18 +2129,18 @@ _.<span class="apidocCodeKeywordSpan">forOwn</span>(options, function(value, key
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">function has(object, path) {
-  return object != null &#x26;&#x26; hasPath(object, path, baseHas);
+  return object != null &amp;&amp; hasPath(object, path, baseHas);
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
- * Gets the name of the first argument from a function&#x27;s source.
+ * Gets the name of the first argument from a function's source.
  *
  * @private
  * @param {Function} fn The function.
  * @returns {string} The argument name.
  */
 function getFirstArgument(fn) {
-  return (!_.<span class="apidocCodeKeywordSpan">has</span>(fn, &#x27;toString&#x27;) &#x26;&#x26;
-    (/^[\s(]*function[^(]*\(([^\s,)]+)/.exec(fn) || 0)[1]) || &#x27;&#x27;;
+  return (!_.<span class="apidocCodeKeywordSpan">has</span>(fn, 'toString') &amp;&amp;
+    (/^[\s(]*function[^(]*\(([^\s,)]+)/.exec(fn) || 0)[1]) || '';
 }
 
 /**
@@ -2172,7 +2165,7 @@ function getFirstArgument(fn) {
     return -1;
   }
   var index = fromIndex == null ? 0 : toInteger(fromIndex);
-  if (index &#x3c; 0) {
+  if (index &lt; 0) {
     index = nativeMax(length + index, 0);
   }
   return baseIndexOf(array, value, index);
@@ -2181,18 +2174,18 @@ function getFirstArgument(fn) {
 var suite = new Benchmark.Suite;
 
 // add tests
-suite.add(&#x27;RegExp#test&#x27;, function() {
-/o/.test(&#x27;Hello World!&#x27;);
+suite.add('RegExp#test', function() {
+/o/.test('Hello World!');
 })
-.add(&#x27;String#indexOf&#x27;, function() {
-&#x27;Hello World!&#x27;.<span class="apidocCodeKeywordSpan">indexOf</span>(&#x27;o&#x27;) &#x3e; -1;
+.add('String#indexOf', function() {
+'Hello World!'.<span class="apidocCodeKeywordSpan">indexOf</span>('o') &gt; -1;
 })
 // add listeners
-.on(&#x27;cycle&#x27;, function(event) {
+.on('cycle', function(event) {
 console.log(String(event.target));
 })
-.on(&#x27;complete&#x27;, function() {
-console.log(&#x27;Fastest is &#x27; + this.filter(&#x27;fastest&#x27;).map(&#x27;name&#x27;));
+.on('complete', function() {
+console.log('Fastest is ' + this.filter('fastest').map('name'));
 ...</pre></li>
     </ul>
 
@@ -2210,8 +2203,8 @@ console.log(&#x27;Fastest is &#x27; + this.filter(&#x27;fastest&#x27;).map(&#x27
       bench,
       queued,
       index = -1,
-      eventProps = { &#x27;currentTarget&#x27;: benches },
-      options = { &#x27;onStart&#x27;: _.noop, &#x27;onCycle&#x27;: _.noop, &#x27;onComplete&#x27;: _.noop },
+      eventProps = { 'currentTarget': benches },
+      options = { 'onStart': _.noop, 'onCycle': _.noop, 'onComplete': _.noop },
       result = _.toArray(benches);
 
 <span class="apidocCodeCommentSpan">  /**
@@ -2223,14 +2216,14 @@ console.log(&#x27;Fastest is &#x27; + this.filter(&#x27;fastest&#x27;).map(&#x27
 
     if (async) {
       // Use `getNext` as the first listener.
-      bench.on(&#x27;complete&#x27;, getNext);
+      bench.on('complete', getNext);
       listeners = bench.events.complete;
       listeners.splice(0, 0, listeners.pop());
     }
     // Execute method.
-    result[index] = _.isFunction(bench &#x26;&#x26; bench[name]) ? bench[name].apply(bench, args) : undefined;
+    result[index] = _.isFunction(bench &amp;&amp; bench[name]) ? bench[name].apply(bench, args) : undefined;
     // If synchronous return `true` until finished.
-    return !async &#x26;&#x26; getNext();
+    return !async &amp;&amp; getNext();
   }
 
   /**
@@ -2242,17 +2235,17 @@ console.log(&#x27;Fastest is &#x27; + this.filter(&#x27;fastest&#x27;).map(&#x27
         async = isAsync(last);
 
     if (async) {
-      last.off(&#x27;complete&#x27;, getNext);
-      last.emit(&#x27;complete&#x27;);
+      last.off('complete', getNext);
+      last.emit('complete');
     }
-    // Emit &#x22;cycle&#x22; event.
-    eventProps.type = &#x27;cycle&#x27;;
+    // Emit "cycle" event.
+    eventProps.type = 'cycle';
     eventProps.target = last;
     cycleEvent = Event(eventProps);
     options.onCycle.call(benches, cycleEvent);
 
     // Choose next benchmark if not exiting early.
-    if (!cycleEvent.aborted &#x26;&#x26; raiseIndex() !== false) {
+    if (!cycleEvent.aborted &amp;&amp; raiseIndex() !== false) {
       bench = queued ? benches[0] : result[index];
       if (isAsync(bench)) {
         delay(bench, execute);
@@ -2266,12 +2259,12 @@ console.log(&#x27;Fastest is &#x27; + this.filter(&#x27;fastest&#x27;).map(&#x27
         return true;
       }
     } else {
-      // Emit &#x22;complete&#x22; event.
-      eventProps.type = &#x27;complete&#x27;;
+      // Emit "complete" event.
+      eventProps.type = 'complete';
       options.onComplete.call(benches, Event(eventProps));
     }
     // When used as a listener `event.aborted = true` will cancel the rest of
-    // the &#x22;complete&#x22; listeners because they were already called above and when
+    // the "complete" listeners because they were already called above and when
     // used as part of `getNext` the `return false` will exit the execution while-loop.
     if (event) {
       event.aborted = true;
@@ -2285,9 +2278,9 @@ console.log(&#x27;Fastest is &#x27; + this.filter(&#x27;fastest&#x27;).map(&#x27
    */
   function isAsync(object) {
     // Avoid using `instanceof` here because of IE memory leak issues with host objects.
-    var async = args[0] &#x26;&#x26; args[0].async;
-    return name == &#x27;run&#x27; &#x26;&#x26; (object instanceof Benchmark) &#x26;&#x26;
-      ((async == null ? object.options.async : async) &#x26;&#x26; support.timeout || object.defer);
+    var async = args[0] &amp;&amp; args[0].async;
+    return name == 'run' &amp;&amp; (object instanceof Benchmark) &amp;&amp;
+      ((async == null ? object.options.async : async) &amp;&amp; support.timeout || object.defer);
   }
 
   /**
@@ -2297,11 +2290,11 @@ console.log(&#x27;Fastest is &#x27; + this.filter(&#x27;fastest&#x27;).map(&#x27
     index++;
 
     // If queued remove the previous bench.
-    if (queued &#x26;&#x26; index &#x3e; 0) {
+    if (queued &amp;&amp; index &gt; 0) {
       shift.call(benches);
     }
     // If we reached the last index then return `false`.
-    return (queued ? benches.length : index &#x3c; result.length)
+    return (queued ? benches.length : index &lt; result.length)
       ? index
       : (index = false);
   }
@@ -2313,24 +2306,24 @@ console.log(&#x27;Fastest is &#x27; + this.filter(&#x27;fastest&#x27;).map(&#x27
     // 2 arguments (array, options).
     options = _.assign(options, name);
     name = options.name;
-    args = _.isArray(args = &#x27;args&#x27; in options ? options.args : []) ? args : [args];
+    args = _.isArray(args = 'args' in options ? options.args : []) ? args : [args];
     queued = options.queued;
   }
   // Start iterating over the array.
   if (raiseIndex() !== false) {
-    // Emit &#x22;start&#x22; event.
+    // Emit "start" event.
     bench = result[index];
-    eventProps.type = &#x27;start&#x27;;
+    eventProps.type = 'start';
     eventProps.target = bench;
     options.onStart.call(benches, Event(eventProps));
 
-    // End early if the suite was aborted in an &#x22;onStart&#x22; listener.
-    if (name == &#x27;run&#x27; &#x26;&#x26; (benches instanceof Suite) &#x26;&#x26; benches.aborted) {
-      // Emit &#x22;cycle&#x22; event.
-      eventProps.type = &#x27;cycle&#x27;;
+    // End early if the suite was aborted in an "onStart" listener.
+    if (name == 'run' &amp;&amp; (benches instanceof Suite) &amp;&amp; benches.aborted) {
+      // Emit "cycle" event.
+      eventProps.type = 'cycle';
       options.onCycle.call(benches, Event(eventProps));
-      // Emit &#x22;complete&#x22; event.
-      eventProps.type = &#x27;complete&#x27;;
+      // Emit "complete" event.
+      eventProps.type = 'complete';
       options.onComplete.call(benches, Event(eventProps));
     }
     // Start method execution.
@@ -2347,10 +2340,10 @@ console.log(&#x27;Fastest is &#x27; + this.filter(&#x27;fastest&#x27;).map(&#x27
 * @example
 *
 * // invoke `reset` on all benchmarks
-* Benchmark.<span class="apidocCodeKeywordSpan">invoke</span>(benches, &#x27;reset&#x27;);
+* Benchmark.<span class="apidocCodeKeywordSpan">invoke</span>(benches, 'reset');
 *
 * // invoke `emit` with arguments
-* Benchmark.invoke(benches, &#x27;emit&#x27;, &#x27;complete&#x27;, listener);
+* Benchmark.invoke(benches, 'emit', 'complete', listener);
 *
 * // invoke `run(true)`, treat benchmarks as a queue, and register invoke callbacks
 * Benchmark.invoke(benches, {
@@ -2370,23 +2363,23 @@ console.log(&#x27;Fastest is &#x27; + this.filter(&#x27;fastest&#x27;).map(&#x27
     <li>description and source-code<pre class="apidocCodePre">function join(object, separator1, separator2) {
   var result = [],
       length = (object = Object(object)).length,
-      arrayLike = length === length &#x3e;&#x3e;&#x3e; 0;
+      arrayLike = length === length &gt;&gt;&gt; 0;
 
-  separator2 || (separator2 = &#x27;: &#x27;);
+  separator2 || (separator2 = ': ');
   _.each(object, function(value, key) {
     result.push(arrayLike ? value : key + separator2 + value);
   });
-  return result.join(separator1 || &#x27;,&#x27;);
+  return result.join(separator1 || ',');
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
       length = (object = Object(object)).length,
-      arrayLike = length === length &#x3e;&#x3e;&#x3e; 0;
+      arrayLike = length === length &gt;&gt;&gt; 0;
 
-  separator2 || (separator2 = &#x27;: &#x27;);
+  separator2 || (separator2 = ': ');
   _.each(object, function(value, key) {
     result.push(arrayLike ? value : key + separator2 + value);
   });
-  return result.<span class="apidocCodeKeywordSpan">join</span>(separator1 || &#x27;,&#x27;);
+  return result.<span class="apidocCodeKeywordSpan">join</span>(separator1 || ',');
 }
 
 /*------------------------------------------------------------------------*/
@@ -2411,22 +2404,22 @@ console.log(&#x27;Fastest is &#x27; + this.filter(&#x27;fastest&#x27;).map(&#x27
   return func(collection, getIteratee(iteratee, 3));
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
-  &#x27;Hello World!&#x27;.indexOf(&#x27;o&#x27;) &#x3e; -1;
+  'Hello World!'.indexOf('o') &gt; -1;
 })
 // add listeners
-.on(&#x27;cycle&#x27;, function(event) {
+.on('cycle', function(event) {
   console.log(String(event.target));
 })
-.on(&#x27;complete&#x27;, function() {
-  console.log(&#x27;Fastest is &#x27; + this.filter(&#x27;fastest&#x27;).<span class="apidocCodeKeywordSpan">map</span>(&#x27;name
-&#x27;));
+.on('complete', function() {
+  console.log('Fastest is ' + this.filter('fastest').<span class="apidocCodeKeywordSpan">map</span>('name
+'));
 })
 // run async
-.run({ &#x27;async&#x27;: true });
+.run({ 'async': true });
 
 // logs:
-// =&#x3e; RegExp#test x 4,161,532 +-0.99% (59 cycles)
-// =&#x3e; String#indexOf x 6,139,623 +-1.00% (131 cycles)
+// =&gt; RegExp#test x 4,161,532 +-0.99% (59 cycles)
+// =&gt; String#indexOf x 6,139,623 +-1.00% (131 cycles)
 ...</pre></li>
     </ul>
 
@@ -2441,7 +2434,7 @@ console.log(&#x27;Fastest is &#x27; + this.filter(&#x27;fastest&#x27;).map(&#x27
     <ul>
     <li>description and source-code<pre class="apidocCodePre">function reduce(collection, iteratee, accumulator) {
   var func = isArray(collection) ? arrayReduce : baseReduce,
-      initAccum = arguments.length &#x3c; 3;
+      initAccum = arguments.length &lt; 3;
 
   return func(collection, getIteratee(iteratee, 4), accumulator, initAccum, baseEach);
 }</pre></li>
@@ -2475,7 +2468,7 @@ function getMean(sample) {
     <ul>
     <li>description and source-code<pre class="apidocCodePre">function runInContext(context) {
   // Exit early if unable to acquire lodash.
-  var _ = context &#x26;&#x26; context._ || require(&#x27;lodash&#x27;) || root._;
+  var _ = context &amp;&amp; context._ || require('lodash') || root._;
   if (!_) {
     Benchmark.runInContext = runInContext;
     return Benchmark;
@@ -2519,19 +2512,19 @@ function getMean(sample) {
   var req = require;
 
   /** Detect DOM document object. */
-  var doc = isHostType(context, &#x27;document&#x27;) &#x26;&#x26; context.document;
+  var doc = isHostType(context, 'document') &amp;&amp; context.document;
 
-  /** Used to access Wade Simmons&#x27; Node.js `microtime` module. */
-  var microtimeObject = req(&#x27;microtime&#x27;);
+  /** Used to access Wade Simmons' Node.js `microtime` module. */
+  var microtimeObject = req('microtime');
 
-  /** Used to access Node.js&#x27;s high resolution timer. */
-  var processObject = isHostType(context, &#x27;process&#x27;) &#x26;&#x26; context.process;
+  /** Used to access Node.js's high resolution timer. */
+  var processObject = isHostType(context, 'process') &amp;&amp; context.process;
 
-  /** Used to prevent a `removeChild` memory leak in IE &#x3c; 9. */
-  var trash = doc &#x26;&#x26; doc.createElement(&#x27;div&#x27;);
+  /** Used to prevent a `removeChild` memory leak in IE &lt; 9. */
+  var trash = doc &amp;&amp; doc.createElement('div');
 
   /** Used to integrity check compiled tests. */
-  var uid = &#x27;uid&#x27; + _.now();
+  var uid = 'uid' + _.now();
 
   /** Used to avoid infinite recursion when methods call each other. */
   var calledBy = {};
@@ -2553,7 +2546,7 @@ function getMean(sample) {
      * @memberOf Benchmark.support
      * @type boolean
      */
-    support.browser = doc &#x26;&#x26; isHostType(context, &#x27;navigator&#x27;) &#x26;&#x26; !isHostType(context, &#x27;phantom&#x27;);
+    support.browser = doc &amp;&amp; isHostType(context, 'navigator') &amp;&amp; !isHostType(context, 'phantom');
 
     /**
      * Detect if the Timers API exists.
@@ -2561,7 +2554,7 @@ function getMean(sample) {
      * @memberOf Benchmark.support
      * @type boolean
      */
-    support.timeout = isHostType(context, &#x27;setTimeout&#x27;) &#x26;&#x26; isHostType(context, &#x27;clearTimeout&#x27;);
+    support.timeout = isHostType(context, 'setTimeout') &amp;&amp; isHostType(context, 'clearTimeout');
 
     /**
      * Detect if function decompilation is support.
@@ -2576,10 +2569,10 @@ function getMean(sample) {
       // Firefox 3.6 and Opera 9.25 strip grouping parentheses from `Function#toString` results.
       // See http://bugzil.la/559438 for more details.
       support.decompilation = Function(
-        (&#x27;return (&#x27; + (function(x) { return { &#x27;x&#x27;: &#x27;&#x27; + (1 + x) + &#x27;&#x27;, &#x27;y&#x27;: 0 }; }) + &#x27;)&#x27;)
+        ('return (' + (function(x) { return { 'x': '' + (1 + x) + '', 'y': 0 }; }) + ')')
         // Avoid issues with code added by Istanbul.
-        .replace(/__cov__[^;]+;/g, &#x27;&#x27;)
-      )()(0).x === &#x27;1&#x27;;
+        .replace(/__cov__[^;]+;/g, '')
+      )()(0).x === '1';
     } catch(e) {
       support.decompilation = false;
     }
@@ -2600,7 +2593,7 @@ function getMean(sample) {
      * @memberOf timer
      * @type {Function|Object}
      */
-    &#x27;ns&#x27;: Date,
+    'ns': Date,
 
     /**
      * Starts the deferred timer.
@@ -2609,7 +2602,7 @@ function getMean(sample) {
      * @memberOf timer
      * @param {Object} deferred The deferred instance.
      */
-    &#x27;start&#x27;: null, // Lazy defined in `clock()`.
+    'start': null, // Lazy defined in `clock()`.
 
     /**
      * Stops the deferred timer.
@@ -2652,7 +2645,7 @@ function getMean(sample) {
       resetting = calledBy.reset;
 
   if (bench.running) {
-    event = Event(&#x27;abort&#x27;);
+    event = Event('abort');
     bench.emit(event);
     if (!event.cancelled || resetting) {
       // Avoid infinite recursion.
@@ -2677,15 +2670,15 @@ var event,
     suite = this,
     aborting = calledBy.abortSuite;
 
-if (suite.running &#x26;&#x26; !aborting) {
+if (suite.running &amp;&amp; !aborting) {
   // No worries, `resetSuite()` is called within `abortSuite()`.
   calledBy.resetSuite = true;
   suite.<span class="apidocCodeKeywordSpan">abort</span>();
   delete calledBy.resetSuite;
 }
 // Reset if the state has changed.
-else if ((suite.aborted || suite.running) &#x26;&#x26;
-    (suite.emit(event = Event(&#x27;reset&#x27;)), !event.cancelled)) {
+else if ((suite.aborted || suite.running) &amp;&amp;
+    (suite.emit(event = Event('reset')), !event.cancelled)) {
   suite.aborted = suite.running = false;
   if (!aborting) {
 ...</pre></li>
@@ -2723,7 +2716,7 @@ else if ((suite.aborted || suite.running) &#x26;&#x26;
   // Copy own properties.
   _.forOwn(suite, function(value, key) {
     if (!_.has(result, key)) {
-      result[key] = _.isFunction(_.get(value, &#x27;clone&#x27;))
+      result[key] = _.isFunction(_.get(value, 'clone'))
         ? value.<span class="apidocCodeKeywordSpan">clone</span>()
         : cloneDeep(value);
     }
@@ -2765,7 +2758,7 @@ else if ((suite.aborted || suite.running) &#x26;&#x26;
 
   function getScore(xA, sampleB) {
     return _.reduce(sampleB, function(total, xB) {
-      return total + (xB &#x3e; xA ? 0 : xB &#x3c; xA ? 1 : 0.5);
+      return total + (xB &gt; xA ? 0 : xB &lt; xA ? 1 : 0.5);
     }, 0);
   }
 
@@ -2780,21 +2773,21 @@ else if ((suite.aborted || suite.running) &#x26;&#x26;
   }
   // Reject the null hypothesis the two samples come from the
   // same population (i.e. have the same median) if...
-  if (size1 + size2 &#x3e; 30) {
+  if (size1 + size2 &gt; 30) {
     // ...the z-stat is greater than 1.96 or less than -1.96
     // http://www.statisticslectures.com/topics/mannwhitneyu/
     zStat = getZ(u);
-    return abs(zStat) &#x3e; 1.96 ? (u == u1 ? 1 : -1) : 0;
+    return abs(zStat) &gt; 1.96 ? (u == u1 ? 1 : -1) : 0;
   }
   // ...the U value is less than or equal the critical U value.
-  critical = maxSize &#x3c; 5 || minSize &#x3c; 3 ? 0 : uTable[maxSize][minSize - 3];
-  return u &#x3c;= critical ? (u == u1 ? 1 : -1) : 0;
+  critical = maxSize &lt; 5 || minSize &lt; 3 ? 0 : uTable[maxSize][minSize - 3];
+  return u &lt;= critical ? (u == u1 ? 1 : -1) : 0;
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
     // Get successful, sort by period + margin of error, and filter fastest/slowest.
-    var result = filter(array, &#x27;successful&#x27;).sort(function(a, b) {
+    var result = filter(array, 'successful').sort(function(a, b) {
       a = a.stats; b = b.stats;
-      return (a.mean + a.moe &#x3e; b.mean + b.moe ? 1 : -1) * (callback === &#x27;fastest&#x27; ? 1 : -1);
+      return (a.mean + a.moe &gt; b.mean + b.moe ? 1 : -1) * (callback === 'fastest' ? 1 : -1);
     });
 
     return _.filter(result, function(bench) {
@@ -2829,7 +2822,7 @@ else if ((suite.aborted || suite.running) &#x26;&#x26;
   event.target || (event.target = object);
   delete event.result;
 
-  if (events &#x26;&#x26; (listeners = _.has(events, event.type) &#x26;&#x26; events[event.type])) {
+  if (events &amp;&amp; (listeners = _.has(events, event.type) &amp;&amp; events[event.type])) {
     _.each(listeners.slice(), function(listener) {
       if ((event.result = listener.apply(object, args)) === false) {
         event.cancelled = true;
@@ -2846,11 +2839,11 @@ var cycleEvent,
     async = isAsync(last);
 
 if (async) {
-  last.off(&#x27;complete&#x27;, getNext);
-  last.<span class="apidocCodeKeywordSpan">emit</span>(&#x27;complete&#x27;);
+  last.off('complete', getNext);
+  last.<span class="apidocCodeKeywordSpan">emit</span>('complete');
 }
-// Emit &#x22;cycle&#x22; event.
-eventProps.type = &#x27;cycle&#x27;;
+// Emit "cycle" event.
+eventProps.type = 'cycle';
 eventProps.target = last;
 cycleEvent = Event(eventProps);
 options.onCycle.call(benches, cycleEvent);
@@ -2891,16 +2884,16 @@ options.onCycle.call(benches, cycleEvent);
   if (!events) {
     return object;
   }
-  _.each(type ? type.split(&#x27; &#x27;) : events, function(listeners, type) {
+  _.each(type ? type.split(' ') : events, function(listeners, type) {
     var index;
-    if (typeof listeners == &#x27;string&#x27;) {
+    if (typeof listeners == 'string') {
       type = listeners;
-      listeners = _.has(events, type) &#x26;&#x26; events[type];
+      listeners = _.has(events, type) &amp;&amp; events[type];
     }
     if (listeners) {
       if (listener) {
         index = _.indexOf(listeners, listener);
-        if (index &#x3e; -1) {
+        if (index &gt; -1) {
           listeners.splice(index, 1);
         }
       } else {
@@ -2918,11 +2911,11 @@ var cycleEvent,
     async = isAsync(last);
 
 if (async) {
-  last.<span class="apidocCodeKeywordSpan">off</span>(&#x27;complete&#x27;, getNext);
-  last.emit(&#x27;complete&#x27;);
+  last.<span class="apidocCodeKeywordSpan">off</span>('complete', getNext);
+  last.emit('complete');
 }
-// Emit &#x22;cycle&#x22; event.
-eventProps.type = &#x27;cycle&#x27;;
+// Emit "cycle" event.
+eventProps.type = 'cycle';
 eventProps.target = last;
 cycleEvent = Event(eventProps);
 options.onCycle.call(benches, cycleEvent);
@@ -2942,7 +2935,7 @@ options.onCycle.call(benches, cycleEvent);
   var object = this,
       events = object.events || (object.events = {});
 
-  _.each(type.split(&#x27; &#x27;), function(type) {
+  _.each(type.split(' '), function(type) {
     (_.has(events, type)
       ? events[type]
       : (events[type] = [])
@@ -2951,21 +2944,21 @@ options.onCycle.call(benches, cycleEvent);
   return object;
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
-suite.add(&#x27;RegExp#test&#x27;, function() {
-  /o/.test(&#x27;Hello World!&#x27;);
+suite.add('RegExp#test', function() {
+  /o/.test('Hello World!');
 })
-.add(&#x27;String#indexOf&#x27;, function() {
-  &#x27;Hello World!&#x27;.indexOf(&#x27;o&#x27;) &#x3e; -1;
+.add('String#indexOf', function() {
+  'Hello World!'.indexOf('o') &gt; -1;
 })
 // add listeners
-.<span class="apidocCodeKeywordSpan">on</span>(&#x27;cycle&#x27;, function(event) {
+.<span class="apidocCodeKeywordSpan">on</span>('cycle', function(event) {
   console.log(String(event.target));
 })
-.on(&#x27;complete&#x27;, function() {
-  console.log(&#x27;Fastest is &#x27; + this.filter(&#x27;fastest&#x27;).map(&#x27;name&#x27;));
+.on('complete', function() {
+  console.log('Fastest is ' + this.filter('fastest').map('name'));
 })
 // run async
-.run({ &#x27;async&#x27;: true });
+.run({ 'async': true });
 ...</pre></li>
     </ul>
 
@@ -2980,7 +2973,7 @@ suite.add(&#x27;RegExp#test&#x27;, function() {
     <ul>
     <li>description and source-code<pre class="apidocCodePre">function reset() {
   var bench = this;
-  if (bench.running &#x26;&#x26; !calledBy.abort) {
+  if (bench.running &amp;&amp; !calledBy.abort) {
     // No worries, `reset()` is called within `abort()`.
     calledBy.reset = true;
     bench.abort();
@@ -2995,8 +2988,8 @@ suite.add(&#x27;RegExp#test&#x27;, function() {
   // A non-recursive solution to check if properties have changed.
   // For more information see http://www.jslab.dk/articles/non.recursive.preorder.traversal.part4.
   var data = {
-    &#x27;destination&#x27;: bench,
-    &#x27;source&#x27;: _.assign({}, cloneDeep(bench.constructor.prototype), cloneDeep(bench.options))
+    'destination': bench,
+    'source': _.assign({}, cloneDeep(bench.constructor.prototype), cloneDeep(bench.options))
   };
 
   do {
@@ -3030,21 +3023,21 @@ suite.add(&#x27;RegExp#test&#x27;, function() {
         }
         // Register a changed object.
         if (changed) {
-          changes.push({ &#x27;destination&#x27;: destination, &#x27;key&#x27;: key, &#x27;value&#x27;: currValue });
+          changes.push({ 'destination': destination, 'key': key, 'value': currValue });
         }
-        queue.push({ &#x27;destination&#x27;: currValue, &#x27;source&#x27;: value });
+        queue.push({ 'destination': currValue, 'source': value });
       }
       // Register a changed primitive.
-      else if (!_.eq(currValue, value) &#x26;&#x26; value !== undefined) {
-        changes.push({ &#x27;destination&#x27;: destination, &#x27;key&#x27;: key, &#x27;value&#x27;: value });
+      else if (!_.eq(currValue, value) &amp;&amp; value !== undefined) {
+        changes.push({ 'destination': destination, 'key': key, 'value': value });
       }
     });
   }
   while ((data = queue[index++]));
 
-  // If changed emit the `reset` event and if it isn&#x27;t cancelled reset the benchmark.
-  if (changes.length &#x26;&#x26;
-      (bench.emit(event = Event(&#x27;reset&#x27;)), !event.cancelled)) {
+  // If changed emit the `reset` event and if it isn't cancelled reset the benchmark.
+  if (changes.length &amp;&amp;
+      (bench.emit(event = Event('reset')), !event.cancelled)) {
     _.each(changes, function(data) {
       data.destination[data.key] = data.value;
     });
@@ -3054,7 +3047,7 @@ suite.add(&#x27;RegExp#test&#x27;, function() {
     <li>example usage<pre class="apidocCodePre">...
 
       if (suite.running) {
-event = Event(&#x27;abort&#x27;);
+event = Event('abort');
 suite.emit(event);
 if (!event.cancelled || resetting) {
   // Avoid infinite recursion.
@@ -3064,7 +3057,7 @@ if (!event.cancelled || resetting) {
 
   if (!resetting) {
     suite.aborted = true;
-    invoke(suite, &#x27;abort&#x27;);
+    invoke(suite, 'abort');
   }
 }
 ...</pre></li>
@@ -3081,9 +3074,9 @@ if (!event.cancelled || resetting) {
     <ul>
     <li>description and source-code<pre class="apidocCodePre">function run(options) {
   var bench = this,
-      event = Event(&#x27;start&#x27;);
+      event = Event('start');
 
-  // Set `running` to `false` so `reset()` won&#x27;t call `abort()`.
+  // Set `running` to `false` so `reset()` won't call `abort()`.
   bench.running = false;
   bench.reset();
   bench.running = true;
@@ -3093,7 +3086,7 @@ if (!event.cancelled || resetting) {
   bench.emit(event);
 
   if (!event.cancelled) {
-    options = { &#x27;async&#x27;: ((options = options &#x26;&#x26; options.async) == null ? bench.async : options) &#x26;&#x26; support.timeout };
+    options = { 'async': ((options = options &amp;&amp; options.async) == null ? bench.async : options) &amp;&amp; support.timeout };
 
     // For clones created within `compute()`.
     if (bench._original) {
@@ -3111,19 +3104,19 @@ if (!event.cancelled || resetting) {
   return bench;
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
-.on(&#x27;cycle&#x27;, function(event) {
+.on('cycle', function(event) {
   console.log(String(event.target));
 })
-.on(&#x27;complete&#x27;, function() {
-  console.log(&#x27;Fastest is &#x27; + this.filter(&#x27;fastest&#x27;).map(&#x27;name&#x27;));
+.on('complete', function() {
+  console.log('Fastest is ' + this.filter('fastest').map('name'));
 })
 // run async
-.<span class="apidocCodeKeywordSpan">run</span>({ &#x27;async&#x27;: true });
+.<span class="apidocCodeKeywordSpan">run</span>({ 'async': true });
 
 // logs:
-// =&#x3e; RegExp#test x 4,161,532 +-0.99% (59 cycles)
-// =&#x3e; String#indexOf x 6,139,623 +-1.00% (131 cycles)
-// =&#x3e; Fastest is String#indexOf
+// =&gt; RegExp#test x 4,161,532 +-0.99% (59 cycles)
+// =&gt; String#indexOf x 6,139,623 +-1.00% (131 cycles)
+// =&gt; Fastest is String#indexOf
 ```
 ...</pre></li>
     </ul>
@@ -3143,20 +3136,19 @@ if (!event.cancelled || resetting) {
     <li>example usage<pre class="apidocCodePre">...
       function createCompiled(bench, decompilable, deferred, body) {
 var fn = bench.fn,
-    fnArg = deferred ? getFirstArgument(fn) || &#x27;deferred&#x27; : &#x27;&#x27;;
+    fnArg = deferred ? getFirstArgument(fn) || 'deferred' : '';
 
 templateData.uid = uid + uidCounter++;
 
 _.assign(templateData, {
-  &#x27;setup&#x27;: decompilable ? getSource(bench.setup) : interpolate(&#x27;m#.<span class="apidocCodeKeywordSpan">setup</span
->()&#x27;),
-  &#x27;fn&#x27;: decompilable ? getSource(fn) : interpolate(&#x27;m#.fn(&#x27; + fnArg + &#x27;)&#x27;),
-  &#x27;fnArg&#x27;: fnArg,
-  &#x27;teardown&#x27;: decompilable ? getSource(bench.teardown) : interpolate(&#x27;m#.teardown()&#x27;)
+  'setup': decompilable ? getSource(bench.setup) : interpolate('m#.<span class="apidocCodeKeywordSpan">setup</span>()'),
+  'fn': decompilable ? getSource(fn) : interpolate('m#.fn(' + fnArg + ')'),
+  'fnArg': fnArg,
+  'teardown': decompilable ? getSource(bench.teardown) : interpolate('m#.teardown()')
 });
 
 // Use API of chosen timer.
-if (timer.unit == &#x27;ns&#x27;) {
+if (timer.unit == 'ns') {
 ...</pre></li>
     </ul>
 
@@ -3179,12 +3171,12 @@ var deferred = this,
     bench = clone._original;
 
 if (bench.aborted) {
-  // cycle() -&#x3e; clone cycle/complete event -&#x3e; compute()&#x27;s invoked bench.run() cycle/complete.
+  // cycle() -&gt; clone cycle/complete event -&gt; compute()'s invoked bench.run() cycle/complete.
   deferred.<span class="apidocCodeKeywordSpan">teardown</span>();
   clone.running = false;
   cycle(deferred);
 }
-else if (++deferred.cycles &#x3c; clone.count) {
+else if (++deferred.cycles &lt; clone.count) {
   clone.compiled.call(deferred, context, timer);
 }
 else {
@@ -3207,8 +3199,8 @@ else {
       id = bench.id,
       stats = bench.stats,
       size = stats.sample.length,
-      pm = &#x27;\xb1&#x27;,
-      result = bench.name || (_.isNaN(id) ? id : &#x27;&#x3c;Test #&#x27; + id + &#x27;&#x3e;&#x27;);
+      pm = '\xb1',
+      result = bench.name || (_.isNaN(id) ? id : '&lt;Test #' + id + '&gt;');
 
   if (error) {
     var errorStr;
@@ -3218,13 +3210,13 @@ else {
       errorStr = join(error);
     } else {
       // Error#name and Error#message properties are non-enumerable.
-      errorStr = join(_.assign({ &#x27;name&#x27;: error.name, &#x27;message&#x27;: error.message }, error));
+      errorStr = join(_.assign({ 'name': error.name, 'message': error.message }, error));
     }
-    result += &#x27;: &#x27; + errorStr;
+    result += ': ' + errorStr;
   }
   else {
-    result += &#x27; x &#x27; + formatNumber(hz.toFixed(hz &#x3c; 100 ? 2 : 0)) + &#x27; ops/sec &#x27; + pm +
-      stats.rme.toFixed(2) + &#x27;% (&#x27; + size + &#x27; run&#x27; + (size == 1 ? &#x27;&#x27; : &#x27;s&#x27;) + &#x27; sampled)&#x27;;
+    result += ' x ' + formatNumber(hz.toFixed(hz &lt; 100 ? 2 : 0)) + ' ops/sec ' + pm +
+      stats.rme.toFixed(2) + '% (' + size + ' run' + (size == 1 ? '' : 's') + ' sampled)';
   }
   return result;
 }</pre></li>
@@ -3286,12 +3278,12 @@ else {
       bench = clone._original;
 
   if (bench.aborted) {
-    // cycle() -&#x3e; clone cycle/complete event -&#x3e; compute()&#x27;s invoked bench.run() cycle/complete.
+    // cycle() -&gt; clone cycle/complete event -&gt; compute()'s invoked bench.run() cycle/complete.
     deferred.teardown();
     clone.running = false;
     cycle(deferred);
   }
-  else if (++deferred.cycles &#x3c; clone.count) {
+  else if (++deferred.cycles &lt; clone.count) {
     clone.compiled.call(deferred, context, timer);
   }
   else {
@@ -3303,10 +3295,10 @@ else {
     <li>example usage<pre class="apidocCodePre">...
 *
 *   // a flag to indicate the benchmark is deferred
-*   &#x27;defer&#x27;: true,
+*   'defer': true,
 *
 *   // benchmark test function
-*   &#x27;fn&#x27;: function(deferred) {
+*   'fn': function(deferred) {
 *     // call `Deferred#resolve` when the deferred test is finished
 *     deferred.<span class="apidocCodeKeywordSpan">resolve</span>();
 *   }
@@ -3366,13 +3358,13 @@ else {
 * var suite = new Benchmark.Suite;
 *
 * // or using a name first
-* var suite = new Benchmark.<span class="apidocCodeKeywordSpan">Suite</span>(&#x27;foo&#x27;);
+* var suite = new Benchmark.<span class="apidocCodeKeywordSpan">Suite</span>('foo');
 *
 * // or with options
-* var suite = new Benchmark.Suite(&#x27;foo&#x27;, {
+* var suite = new Benchmark.Suite('foo', {
 *
 *   // called when the suite starts running
-*   &#x27;onStart&#x27;: onStart,
+*   'onStart': onStart,
 *
 ...</pre></li>
     </ul>
@@ -3403,7 +3395,7 @@ else {
       resetting = calledBy.resetSuite;
 
   if (suite.running) {
-    event = Event(&#x27;abort&#x27;);
+    event = Event('abort');
     suite.emit(event);
     if (!event.cancelled || resetting) {
       // Avoid infinite recursion.
@@ -3413,7 +3405,7 @@ else {
 
       if (!resetting) {
         suite.aborted = true;
-        invoke(suite, &#x27;abort&#x27;);
+        invoke(suite, 'abort');
       }
     }
   }
@@ -3424,15 +3416,15 @@ var event,
     suite = this,
     aborting = calledBy.abortSuite;
 
-if (suite.running &#x26;&#x26; !aborting) {
+if (suite.running &amp;&amp; !aborting) {
   // No worries, `resetSuite()` is called within `abortSuite()`.
   calledBy.resetSuite = true;
   suite.<span class="apidocCodeKeywordSpan">abort</span>();
   delete calledBy.resetSuite;
 }
 // Reset if the state has changed.
-else if ((suite.aborted || suite.running) &#x26;&#x26;
-    (suite.emit(event = Event(&#x27;reset&#x27;)), !event.cancelled)) {
+else if ((suite.aborted || suite.running) &amp;&amp;
+    (suite.emit(event = Event('reset')), !event.cancelled)) {
   suite.aborted = suite.running = false;
   if (!aborting) {
 ...</pre></li>
@@ -3450,7 +3442,7 @@ else if ((suite.aborted || suite.running) &#x26;&#x26;
     <li>description and source-code<pre class="apidocCodePre">function add(name, fn, options) {
   var suite = this,
       bench = new Benchmark(name, fn, options),
-      event = Event({ &#x27;type&#x27;: &#x27;add&#x27;, &#x27;target&#x27;: bench });
+      event = Event({ 'type': 'add', 'target': bench });
 
   if (suite.emit(event), !event.cancelled) {
     suite.push(bench);
@@ -3465,14 +3457,14 @@ Usage example:
 var suite = new Benchmark.Suite;
 
 // add tests
-suite.<span class="apidocCodeKeywordSpan">add</span>(&#x27;RegExp#test&#x27;, function() {
-  /o/.test(&#x27;Hello World!&#x27;);
+suite.<span class="apidocCodeKeywordSpan">add</span>('RegExp#test', function() {
+  /o/.test('Hello World!');
 })
-.add(&#x27;String#indexOf&#x27;, function() {
-  &#x27;Hello World!&#x27;.indexOf(&#x27;o&#x27;) &#x3e; -1;
+.add('String#indexOf', function() {
+  'Hello World!'.indexOf('o') &gt; -1;
 })
 // add listeners
-.on(&#x27;cycle&#x27;, function(event) {
+.on('cycle', function(event) {
 ...</pre></li>
     </ul>
 
@@ -3492,7 +3484,7 @@ suite.<span class="apidocCodeKeywordSpan">add</span>(&#x27;RegExp#test&#x27;, fu
   // Copy own properties.
   _.forOwn(suite, function(value, key) {
     if (!_.has(result, key)) {
-      result[key] = _.isFunction(_.get(value, &#x27;clone&#x27;))
+      result[key] = _.isFunction(_.get(value, 'clone'))
         ? value.clone()
         : cloneDeep(value);
     }
@@ -3506,7 +3498,7 @@ suite.<span class="apidocCodeKeywordSpan">add</span>(&#x27;RegExp#test&#x27;, fu
   // Copy own properties.
   _.forOwn(suite, function(value, key) {
     if (!_.has(result, key)) {
-      result[key] = _.isFunction(_.get(value, &#x27;clone&#x27;))
+      result[key] = _.isFunction(_.get(value, 'clone'))
         ? value.<span class="apidocCodeKeywordSpan">clone</span>()
         : cloneDeep(value);
     }
@@ -3540,7 +3532,7 @@ _.forOwn(options, function(value, key) {
   if (value != null) {
     // Add event listeners.
     if (/^on[A-Z]/.test(key)) {
-      _.<span class="apidocCodeKeywordSpan">each</span>(key.split(&#x27; &#x27;), function(key) {
+      _.<span class="apidocCodeKeywordSpan">each</span>(key.split(' '), function(key) {
         object.on(key.slice(2).toLowerCase(), value);
       });
     } else if (!_.has(object, key)) {
@@ -3571,7 +3563,7 @@ _.forOwn(options, function(value, key) {
   event.target || (event.target = object);
   delete event.result;
 
-  if (events &#x26;&#x26; (listeners = _.has(events, event.type) &#x26;&#x26; events[event.type])) {
+  if (events &amp;&amp; (listeners = _.has(events, event.type) &amp;&amp; events[event.type])) {
     _.each(listeners.slice(), function(listener) {
       if ((event.result = listener.apply(object, args)) === false) {
         event.cancelled = true;
@@ -3588,11 +3580,11 @@ var cycleEvent,
     async = isAsync(last);
 
 if (async) {
-  last.off(&#x27;complete&#x27;, getNext);
-  last.<span class="apidocCodeKeywordSpan">emit</span>(&#x27;complete&#x27;);
+  last.off('complete', getNext);
+  last.<span class="apidocCodeKeywordSpan">emit</span>('complete');
 }
-// Emit &#x22;cycle&#x22; event.
-eventProps.type = &#x27;cycle&#x27;;
+// Emit "cycle" event.
+eventProps.type = 'cycle';
 eventProps.target = last;
 cycleEvent = Event(eventProps);
 options.onCycle.call(benches, cycleEvent);
@@ -3616,22 +3608,22 @@ options.onCycle.call(benches, cycleEvent);
   return result;
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
-  &#x27;Hello World!&#x27;.indexOf(&#x27;o&#x27;) &#x3e; -1;
+  'Hello World!'.indexOf('o') &gt; -1;
 })
 // add listeners
-.on(&#x27;cycle&#x27;, function(event) {
+.on('cycle', function(event) {
   console.log(String(event.target));
 })
-.on(&#x27;complete&#x27;, function() {
-  console.log(&#x27;Fastest is &#x27; + this.<span class="apidocCodeKeywordSpan">filter</span>(&#x27;fastest&#x27;).map(&#x27;name
-&#x27;));
+.on('complete', function() {
+  console.log('Fastest is ' + this.<span class="apidocCodeKeywordSpan">filter</span>('fastest').map('name
+'));
 })
 // run async
-.run({ &#x27;async&#x27;: true });
+.run({ 'async': true });
 
 // logs:
-// =&#x3e; RegExp#test x 4,161,532 +-0.99% (59 cycles)
-// =&#x3e; String#indexOf x 6,139,623 +-1.00% (131 cycles)
+// =&gt; RegExp#test x 4,161,532 +-0.99% (59 cycles)
+// =&gt; String#indexOf x 6,139,623 +-1.00% (131 cycles)
 ...</pre></li>
     </ul>
 
@@ -3670,18 +3662,18 @@ options.onCycle.call(benches, cycleEvent);
 var suite = new Benchmark.Suite;
 
 // add tests
-suite.add(&#x27;RegExp#test&#x27;, function() {
-/o/.test(&#x27;Hello World!&#x27;);
+suite.add('RegExp#test', function() {
+/o/.test('Hello World!');
 })
-.add(&#x27;String#indexOf&#x27;, function() {
-&#x27;Hello World!&#x27;.<span class="apidocCodeKeywordSpan">indexOf</span>(&#x27;o&#x27;) &#x3e; -1;
+.add('String#indexOf', function() {
+'Hello World!'.<span class="apidocCodeKeywordSpan">indexOf</span>('o') &gt; -1;
 })
 // add listeners
-.on(&#x27;cycle&#x27;, function(event) {
+.on('cycle', function(event) {
 console.log(String(event.target));
 })
-.on(&#x27;complete&#x27;, function() {
-console.log(&#x27;Fastest is &#x27; + this.filter(&#x27;fastest&#x27;).map(&#x27;name&#x27;));
+.on('complete', function() {
+console.log('Fastest is ' + this.filter('fastest').map('name'));
 ...</pre></li>
     </ul>
 
@@ -3697,13 +3689,13 @@ console.log(&#x27;Fastest is &#x27; + this.filter(&#x27;fastest&#x27;).map(&#x27
     <li>description and source-code<pre class="apidocCodePre">function join() { [native code] }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
       length = (object = Object(object)).length,
-      arrayLike = length === length &#x3e;&#x3e;&#x3e; 0;
+      arrayLike = length === length &gt;&gt;&gt; 0;
 
-  separator2 || (separator2 = &#x27;: &#x27;);
+  separator2 || (separator2 = ': ');
   _.each(object, function(value, key) {
     result.push(arrayLike ? value : key + separator2 + value);
   });
-  return result.<span class="apidocCodeKeywordSpan">join</span>(separator1 || &#x27;,&#x27;);
+  return result.<span class="apidocCodeKeywordSpan">join</span>(separator1 || ',');
 }
 
 /*------------------------------------------------------------------------*/
@@ -3747,22 +3739,22 @@ console.log(&#x27;Fastest is &#x27; + this.filter(&#x27;fastest&#x27;).map(&#x27
   return func.apply(_, args);
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
-  &#x27;Hello World!&#x27;.indexOf(&#x27;o&#x27;) &#x3e; -1;
+  'Hello World!'.indexOf('o') &gt; -1;
 })
 // add listeners
-.on(&#x27;cycle&#x27;, function(event) {
+.on('cycle', function(event) {
   console.log(String(event.target));
 })
-.on(&#x27;complete&#x27;, function() {
-  console.log(&#x27;Fastest is &#x27; + this.filter(&#x27;fastest&#x27;).<span class="apidocCodeKeywordSpan">map</span>(&#x27;name
-&#x27;));
+.on('complete', function() {
+  console.log('Fastest is ' + this.filter('fastest').<span class="apidocCodeKeywordSpan">map</span>('name
+'));
 })
 // run async
-.run({ &#x27;async&#x27;: true });
+.run({ 'async': true });
 
 // logs:
-// =&#x3e; RegExp#test x 4,161,532 +-0.99% (59 cycles)
-// =&#x3e; String#indexOf x 6,139,623 +-1.00% (131 cycles)
+// =&gt; RegExp#test x 4,161,532 +-0.99% (59 cycles)
+// =&gt; String#indexOf x 6,139,623 +-1.00% (131 cycles)
 ...</pre></li>
     </ul>
 
@@ -3782,16 +3774,16 @@ console.log(&#x27;Fastest is &#x27; + this.filter(&#x27;fastest&#x27;).map(&#x27
   if (!events) {
     return object;
   }
-  _.each(type ? type.split(&#x27; &#x27;) : events, function(listeners, type) {
+  _.each(type ? type.split(' ') : events, function(listeners, type) {
     var index;
-    if (typeof listeners == &#x27;string&#x27;) {
+    if (typeof listeners == 'string') {
       type = listeners;
-      listeners = _.has(events, type) &#x26;&#x26; events[type];
+      listeners = _.has(events, type) &amp;&amp; events[type];
     }
     if (listeners) {
       if (listener) {
         index = _.indexOf(listeners, listener);
-        if (index &#x3e; -1) {
+        if (index &gt; -1) {
           listeners.splice(index, 1);
         }
       } else {
@@ -3809,11 +3801,11 @@ var cycleEvent,
     async = isAsync(last);
 
 if (async) {
-  last.<span class="apidocCodeKeywordSpan">off</span>(&#x27;complete&#x27;, getNext);
-  last.emit(&#x27;complete&#x27;);
+  last.<span class="apidocCodeKeywordSpan">off</span>('complete', getNext);
+  last.emit('complete');
 }
-// Emit &#x22;cycle&#x22; event.
-eventProps.type = &#x27;cycle&#x27;;
+// Emit "cycle" event.
+eventProps.type = 'cycle';
 eventProps.target = last;
 cycleEvent = Event(eventProps);
 options.onCycle.call(benches, cycleEvent);
@@ -3833,7 +3825,7 @@ options.onCycle.call(benches, cycleEvent);
   var object = this,
       events = object.events || (object.events = {});
 
-  _.each(type.split(&#x27; &#x27;), function(type) {
+  _.each(type.split(' '), function(type) {
     (_.has(events, type)
       ? events[type]
       : (events[type] = [])
@@ -3842,21 +3834,21 @@ options.onCycle.call(benches, cycleEvent);
   return object;
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
-suite.add(&#x27;RegExp#test&#x27;, function() {
-  /o/.test(&#x27;Hello World!&#x27;);
+suite.add('RegExp#test', function() {
+  /o/.test('Hello World!');
 })
-.add(&#x27;String#indexOf&#x27;, function() {
-  &#x27;Hello World!&#x27;.indexOf(&#x27;o&#x27;) &#x3e; -1;
+.add('String#indexOf', function() {
+  'Hello World!'.indexOf('o') &gt; -1;
 })
 // add listeners
-.<span class="apidocCodeKeywordSpan">on</span>(&#x27;cycle&#x27;, function(event) {
+.<span class="apidocCodeKeywordSpan">on</span>('cycle', function(event) {
   console.log(String(event.target));
 })
-.on(&#x27;complete&#x27;, function() {
-  console.log(&#x27;Fastest is &#x27; + this.filter(&#x27;fastest&#x27;).map(&#x27;name&#x27;));
+.on('complete', function() {
+  console.log('Fastest is ' + this.filter('fastest').map('name'));
 })
 // run async
-.run({ &#x27;async&#x27;: true });
+.run({ 'async': true });
 ...</pre></li>
     </ul>
 
@@ -3884,14 +3876,14 @@ suite.add(&#x27;RegExp#test&#x27;, function() {
 
   if (async) {
     // Use `getNext` as the first listener.
-    bench.on(&#x27;complete&#x27;, getNext);
+    bench.on('complete', getNext);
     listeners = bench.events.complete;
     listeners.splice(0, 0, listeners.<span class="apidocCodeKeywordSpan">pop</span>());
   }
   // Execute method.
-  result[index] = _.isFunction(bench &#x26;&#x26; bench[name]) ? bench[name].apply(bench, args) : undefined;
+  result[index] = _.isFunction(bench &amp;&amp; bench[name]) ? bench[name].apply(bench, args) : undefined;
   // If synchronous return `true` until finished.
-  return !async &#x26;&#x26; getNext();
+  return !async &amp;&amp; getNext();
 }
 ...</pre></li>
     </ul>
@@ -3910,13 +3902,13 @@ suite.add(&#x27;RegExp#test&#x27;, function() {
 function join(object, separator1, separator2) {
   var result = [],
       length = (object = Object(object)).length,
-      arrayLike = length === length &#x3e;&#x3e;&#x3e; 0;
+      arrayLike = length === length &gt;&gt;&gt; 0;
 
-  separator2 || (separator2 = &#x27;: &#x27;);
+  separator2 || (separator2 = ': ');
   _.each(object, function(value, key) {
     result.<span class="apidocCodeKeywordSpan">push</span>(arrayLike ? value : key + separator2 + value);
   });
-  return result.join(separator1 || &#x27;,&#x27;);
+  return result.join(separator1 || ',');
 }
 
 /*------------------------------------------------------------------------*/
@@ -3972,18 +3964,18 @@ function getMean(sample) {
       suite = this,
       aborting = calledBy.abortSuite;
 
-  if (suite.running &#x26;&#x26; !aborting) {
+  if (suite.running &amp;&amp; !aborting) {
     // No worries, `resetSuite()` is called within `abortSuite()`.
     calledBy.resetSuite = true;
     suite.abort();
     delete calledBy.resetSuite;
   }
   // Reset if the state has changed.
-  else if ((suite.aborted || suite.running) &#x26;&#x26;
-      (suite.emit(event = Event(&#x27;reset&#x27;)), !event.cancelled)) {
+  else if ((suite.aborted || suite.running) &amp;&amp;
+      (suite.emit(event = Event('reset')), !event.cancelled)) {
     suite.aborted = suite.running = false;
     if (!aborting) {
-      invoke(suite, &#x27;reset&#x27;);
+      invoke(suite, 'reset');
     }
   }
   return suite;
@@ -3991,7 +3983,7 @@ function getMean(sample) {
     <li>example usage<pre class="apidocCodePre">...
 
       if (suite.running) {
-event = Event(&#x27;abort&#x27;);
+event = Event('abort');
 suite.emit(event);
 if (!event.cancelled || resetting) {
   // Avoid infinite recursion.
@@ -4001,7 +3993,7 @@ if (!event.cancelled || resetting) {
 
   if (!resetting) {
     suite.aborted = true;
-    invoke(suite, &#x27;abort&#x27;);
+    invoke(suite, 'abort');
   }
 }
 ...</pre></li>
@@ -4037,21 +4029,21 @@ if (!event.cancelled || resetting) {
   options || (options = {});
 
   invoke(suite, {
-    &#x27;name&#x27;: &#x27;run&#x27;,
-    &#x27;args&#x27;: options,
-    &#x27;queued&#x27;: options.queued,
-    &#x27;onStart&#x27;: function(event) {
+    'name': 'run',
+    'args': options,
+    'queued': options.queued,
+    'onStart': function(event) {
       suite.emit(event);
     },
-    &#x27;onCycle&#x27;: function(event) {
+    'onCycle': function(event) {
       var bench = event.target;
       if (bench.error) {
-        suite.emit({ &#x27;type&#x27;: &#x27;error&#x27;, &#x27;target&#x27;: bench });
+        suite.emit({ 'type': 'error', 'target': bench });
       }
       suite.emit(event);
       event.aborted = suite.aborted;
     },
-    &#x27;onComplete&#x27;: function(event) {
+    'onComplete': function(event) {
       suite.running = false;
       suite.emit(event);
     }
@@ -4059,19 +4051,19 @@ if (!event.cancelled || resetting) {
   return suite;
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
-.on(&#x27;cycle&#x27;, function(event) {
+.on('cycle', function(event) {
   console.log(String(event.target));
 })
-.on(&#x27;complete&#x27;, function() {
-  console.log(&#x27;Fastest is &#x27; + this.filter(&#x27;fastest&#x27;).map(&#x27;name&#x27;));
+.on('complete', function() {
+  console.log('Fastest is ' + this.filter('fastest').map('name'));
 })
 // run async
-.<span class="apidocCodeKeywordSpan">run</span>({ &#x27;async&#x27;: true });
+.<span class="apidocCodeKeywordSpan">run</span>({ 'async': true });
 
 // logs:
-// =&#x3e; RegExp#test x 4,161,532 +-0.99% (59 cycles)
-// =&#x3e; String#indexOf x 6,139,623 +-1.00% (131 cycles)
-// =&#x3e; Fastest is String#indexOf
+// =&gt; RegExp#test x 4,161,532 +-0.99% (59 cycles)
+// =&gt; String#indexOf x 6,139,623 +-1.00% (131 cycles)
+// =&gt; Fastest is String#indexOf
 ```
 ...</pre></li>
     </ul>
@@ -4114,7 +4106,7 @@ if (!event.cancelled || resetting) {
     if (value != null) {
       // Add event listeners.
       if (/^on[A-Z]/.test(key)) {
-        _.each(key.split(&#x27; &#x27;), function(key) {
+        _.each(key.split(' '), function(key) {
           object.on(key.<span class="apidocCodeKeywordSpan">slice</span>(2).toLowerCase(), value);
         });
       } else if (!_.has(object, key)) {
@@ -4141,15 +4133,15 @@ if (!event.cancelled || resetting) {
 * var bench = new Benchmark({
 *
 *   // benchmark name
-*   &#x27;name&#x27;: &#x27;foo&#x27;,
+*   'name': 'foo',
 *
 *   // benchmark test as a string
-*   &#x27;fn&#x27;: &#x27;[1,2,3,4].<span class="apidocCodeKeywordSpan">sort</span>()&#x27;
+*   'fn': '[1,2,3,4].<span class="apidocCodeKeywordSpan">sort</span>()'
 * });
 *
-* // a test&#x27;s `this` binding is set to the benchmark instance
-* var bench = new Benchmark(&#x27;foo&#x27;, function() {
-*   &#x27;My name is &#x27;.concat(this.name); // &#x22;My name is foo&#x22;
+* // a test's `this` binding is set to the benchmark instance
+* var bench = new Benchmark('foo', function() {
+*   'My name is '.concat(this.name); // "My name is foo"
 * });
 */
 ...</pre></li>
@@ -4179,14 +4171,14 @@ if (!event.cancelled || resetting) {
 
   if (async) {
     // Use `getNext` as the first listener.
-    bench.on(&#x27;complete&#x27;, getNext);
+    bench.on('complete', getNext);
     listeners = bench.events.complete;
     listeners.<span class="apidocCodeKeywordSpan">splice</span>(0, 0, listeners.pop());
   }
   // Execute method.
-  result[index] = _.isFunction(bench &#x26;&#x26; bench[name]) ? bench[name].apply(bench, args) : undefined;
+  result[index] = _.isFunction(bench &amp;&amp; bench[name]) ? bench[name].apply(bench, args) : undefined;
   // If synchronous return `true` until finished.
-  return !async &#x26;&#x26; getNext();
+  return !async &amp;&amp; getNext();
 }
 ...</pre></li>
     </ul>
@@ -4230,7 +4222,7 @@ if (!event.cancelled || resetting) {
 </span>  var context = root;
 
   /** Used to flag when a custom context is provided. */
-  var isCustomContext = ua &#x26;&#x26; typeof ua == &#x27;object&#x27; &#x26;&#x26; getClassOf(ua) != &#x27;String&#x27;;
+  var isCustomContext = ua &amp;&amp; typeof ua == 'object' &amp;&amp; getClassOf(ua) != 'String';
 
   // Juggle arguments.
   if (isCustomContext) {
@@ -4242,7 +4234,7 @@ if (!event.cancelled || resetting) {
   var nav = context.navigator || {};
 
   /** Browser user agent string. */
-  var userAgent = nav.userAgent || &#x27;&#x27;;
+  var userAgent = nav.userAgent || '';
 
   ua || (ua = userAgent);
 
@@ -4252,26 +4244,26 @@ if (!event.cancelled || resetting) {
   /** Used to detect if browser is like Chrome. */
   var likeChrome = isCustomContext
     ? !!nav.likeChrome
-    : /\bChrome\b/.test(ua) &#x26;&#x26; !/internal|\n/i.test(toString.toString());
+    : /\bChrome\b/.test(ua) &amp;&amp; !/internal|\n/i.test(toString.toString());
 
   /** Internal `[[Class]]` value shortcuts. */
-  var objectClass = &#x27;Object&#x27;,
-      airRuntimeClass = isCustomContext ? objectClass : &#x27;ScriptBridgingProxyObject&#x27;,
-      enviroClass = isCustomContext ? objectClass : &#x27;Environment&#x27;,
-      javaClass = (isCustomContext &#x26;&#x26; context.java) ? &#x27;JavaPackage&#x27; : getClassOf(context.java),
-      phantomClass = isCustomContext ? objectClass : &#x27;RuntimeObject&#x27;;
+  var objectClass = 'Object',
+      airRuntimeClass = isCustomContext ? objectClass : 'ScriptBridgingProxyObject',
+      enviroClass = isCustomContext ? objectClass : 'Environment',
+      javaClass = (isCustomContext &amp;&amp; context.java) ? 'JavaPackage' : getClassOf(context.java),
+      phantomClass = isCustomContext ? objectClass : 'RuntimeObject';
 
   /** Detect Java environments. */
-  var java = /\bJava/.test(javaClass) &#x26;&#x26; context.java;
+  var java = /\bJava/.test(javaClass) &amp;&amp; context.java;
 
   /** Detect Rhino. */
-  var rhino = java &#x26;&#x26; getClassOf(context.environment) == enviroClass;
+  var rhino = java &amp;&amp; getClassOf(context.environment) == enviroClass;
 
   /** A character to represent alpha. */
-  var alpha = java ? &#x27;a&#x27; : &#x27;\u03b1&#x27;;
+  var alpha = java ? 'a' : '\u03b1';
 
   /** A character to represent beta. */
-  var beta = java ? &#x27;b&#x27; : &#x27;\u03b2&#x27;;
+  var beta = java ? 'b' : '\u03b2';
 
   /** Browser document object. */
   var doc = context.document || {};
@@ -4284,13 +4276,13 @@ if (!event.cancelled || resetting) {
   var opera = context.operamini || context.opera;
 
   /** Opera `[[Class]]`. */
-  var operaClass = reOpera.test(operaClass = (isCustomContext &#x26;&#x26; opera) ? opera[&#x27;[[Class]]&#x27;] : getClassOf(opera))
+  var operaClass = reOpera.test(operaClass = (isCustomContext &amp;&amp; opera) ? opera['[[Class]]'] : getClassOf(opera))
     ? operaClass
     : (opera = null);
 
   /*------------------------------------------------------------------------*/
 
-  /** Temporary variable used over the script&#x27;s lifetime. */
+  /** Temporary variable used over the script's lifetime. */
   var data;
 
   /** The CPU architecture. */
@@ -4306,68 +4298,68 @@ if (!event.cancelled || resetting) {
   var useFeatures = ua == userAgent;
 
   /** The browser/environment version. */
-  var version = useFeatures &#x26;&#x26; opera &#x26;&#x26; typeof opera.version == &#x27;function&#x27; &#x26;&#x26; opera.version();
+  var version = useFeatures &amp;&amp; opera &amp;&amp; typeof opera.version == 'function' &amp;&amp; opera.version();
 
-  /** A flag to indicate if the OS ends with &#x22;/ Version&#x22; */
+  /** A flag to indicate if the OS ends with "/ Version" */
   var isSpecialCasedOS;
 
   /* Detectable layout engines (order is important). */
   var layout = getLayout([
-    { &#x27;label&#x27;: &#x27;EdgeHTML&#x27;, &#x27;pattern&#x27;: &#x27;Edge&#x27; },
-    &#x27;Trident&#x27;,
-    { &#x27;label&#x27;: &#x27;WebKit&#x27;, &#x27;pattern&#x27;: &#x27;AppleWebKit&#x27; },
-    &#x27;iCab&#x27;,
-    &#x27;Presto&#x27;,
-    &#x27;NetFront&#x27;,
-    &#x27;Tasman&#x27;,
-    &#x27;KHTML&#x27;,
-    &#x27;Gecko&#x27;
+    { 'label': 'EdgeHTML', 'pattern': 'Edge' },
+    'Trident',
+    { 'label': 'WebKit', 'pattern': 'AppleWebKit' },
+    'iCab',
+    'Presto',
+    'NetFront',
+    'Tasman',
+    'KHTML',
+    'Gecko'
   ]);
 
   /* Detectable browser names (order is important). */
   var name = getName([
-    &#x27;Adobe AIR&#x27;,
-    &#x27;Arora&#x27;,
-    &#x27;Avant Browser&#x27;,
-    &#x27;Breach&#x27;,
-    &#x27;Camino&#x27;,
-    &#x27;Electron&#x27;,
-    &#x27;Epiphany&#x27;,
-    &#x27;Fennec&#x27;,
-    &#x27;Flock&#x27;,
-    &#x27;Galeon&#x27;,
-    &#x27;GreenBrowser&#x27;,
-    &#x27;iCab&#x27;,
-    &#x27;Iceweasel&#x27;,
-    &#x27;K-Meleon&#x27;,
-    &#x27;Konqueror&#x27;,
-    &#x27;Lunascape&#x27;,
-    &#x27;Maxthon&#x27;,
-    { &#x27;label&#x27;: &#x27;Microsoft Edge&#x27;, &#x27;pattern&#x27;: &#x27;Edge&#x27; },
-    &#x27;Midori&#x27;,
-    &#x27;Nook Browser&#x27;,
-    &#x27;PaleMoon&#x27;,
-    &#x27;PhantomJS&#x27;,
-    &#x27;Raven&#x27;,
-    &#x27;Rekonq&#x27;,
-    &#x27;RockMelt&#x27;,
-    { &#x27;label&#x27;: &#x27;Samsung Internet&#x27;, &#x27;pattern&#x27;: &#x27;SamsungBrowser&#x27; },
-    &#x27;SeaMonkey&#x27;,
-    { &#x27;label&#x27;: &#x27;Silk&#x27;, &#x27;pattern&#x27;: &#x27;(?:Cloud9|Silk-Accelerated)&#x27; },
-    &#x27;Sleipnir&#x27;,
-    &#x27;SlimBrowser&#x27;,
-    { &#x27;label&#x27;: &#x27;SRWare Iron&#x27;, &#x27;pattern&#x27;: &#x27;Iron&#x27; },
-    &#x27;Sunrise&#x27;,
-    &#x27;Swiftfox&#x27;,
-    &#x27;Waterfox&#x27;,
-    &#x27;WebPositive&#x27;,
-    &#x27;Opera Mini&#x27;,
-    { &#x27;label&#x27;: &#x27;Opera Mini&#x27;, &#x27;pattern&#x27;: &#x27;OPiOS&#x27; },
-    &#x27;Opera&#x27;,
-    { &#x27;label&#x27;: &#x27;Opera&#x27;, &#x27;pattern&#x27;: &#x27;OPR&#x27; },
-    &#x27;Chrome&#x27;,
-    { &#x27;label&#x27;: &#x27;Chrome Mobile&#x27;, &#x27;pattern&#x27;: &#x27;(?:CriOS|CrMo)&#x27; },
-    { &#x27;label&#x27;: &#x27;Firefox&#x27;, &#x27;pattern&#x27;: &#x27;(?:Firefox|Minefie ...</pre></li>
+    'Adobe AIR',
+    'Arora',
+    'Avant Browser',
+    'Breach',
+    'Camino',
+    'Electron',
+    'Epiphany',
+    'Fennec',
+    'Flock',
+    'Galeon',
+    'GreenBrowser',
+    'iCab',
+    'Iceweasel',
+    'K-Meleon',
+    'Konqueror',
+    'Lunascape',
+    'Maxthon',
+    { 'label': 'Microsoft Edge', 'pattern': 'Edge' },
+    'Midori',
+    'Nook Browser',
+    'PaleMoon',
+    'PhantomJS',
+    'Raven',
+    'Rekonq',
+    'RockMelt',
+    { 'label': 'Samsung Internet', 'pattern': 'SamsungBrowser' },
+    'SeaMonkey',
+    { 'label': 'Silk', 'pattern': '(?:Cloud9|Silk-Accelerated)' },
+    'Sleipnir',
+    'SlimBrowser',
+    { 'label': 'SRWare Iron', 'pattern': 'Iron' },
+    'Sunrise',
+    'Swiftfox',
+    'Waterfox',
+    'WebPositive',
+    'Opera Mini',
+    { 'label': 'Opera Mini', 'pattern': 'OPiOS' },
+    'Opera',
+    { 'label': 'Opera', 'pattern': 'OPR' },
+    'Chrome',
+    { 'label': 'Chrome Mobile', 'pattern': '(?:CriOS|CrMo)' },
+    { 'label': 'Firefox', 'pattern': '(?:Firefox|Minefie ...</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
 
@@ -4381,7 +4373,7 @@ if (!event.cancelled || resetting) {
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">function toStringPlatform() {
-  return this.description || &#x27;&#x27;;
+  return this.description || '';
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
@@ -4418,7 +4410,7 @@ if (!event.cancelled || resetting) {
         </a>
     </h2>
     <ul>
-    <li>description and source-code<pre class="apidocCodePre">toString = function () { return &#x27;null&#x27;; }</pre></li>
+    <li>description and source-code<pre class="apidocCodePre">toString = function () { return 'null'; }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
 
@@ -4437,3 +4429,4 @@ if (!event.cancelled || resetting) {
     ]
 </div>
 </div>
+</body></html>
