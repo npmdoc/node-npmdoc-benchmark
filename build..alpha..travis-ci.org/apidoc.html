@@ -1250,22 +1250,21 @@ _.forOwn(options, function(value, key) {
   return _.filter(array, callback);
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
-  &#x27;Hello World!&#x27;.indexOf(&#x27;o&#x27;) &#x3e; -1;
-})
-// add listeners
-.on(&#x27;cycle&#x27;, function(event) {
-  console.log(String(event.target));
-})
-.on(&#x27;complete&#x27;, function() {
-  console.log(&#x27;Fastest is &#x27; + this.<span class="apidocCodeKeywordSpan">filter</span>(&#x27;fastest&#x27;).map(&#x27;name
-&#x27;));
-})
-// run async
-.run({ &#x27;async&#x27;: true });
-
-// logs:
-// =&#x3e; RegExp#test x 4,161,532 +-0.99% (59 cycles)
-// =&#x3e; String#indexOf x 6,139,623 +-1.00% (131 cycles)
+* @memberOf Benchmark
+* @param {Array} array The array to iterate over.
+* @param {Function|string} callback The function/alias called per iteration.
+* @returns {Array} A new array of values that passed callback filter.
+* @example
+*
+* // get odd numbers
+* Benchmark.<span class="apidocCodeKeywordSpan">filter</span>([1, 2, 3, 4, 5], function(n) {
+*   return n % 2;
+* }); // -&#x3e; [1, 3, 5];
+*
+* // get fastest benchmarks
+* Benchmark.filter(benches, &#x27;fastest&#x27;);
+*
+* // get slowest benchmarks
 ...</pre></li>
     </ul>
 
@@ -1385,21 +1384,21 @@ function getFirstArgument(fn) {
   return baseIndexOf(array, value, index);
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
-var suite = new Benchmark.Suite;
-
-// add tests
-suite.add(&#x27;RegExp#test&#x27;, function() {
-/o/.test(&#x27;Hello World!&#x27;);
-})
-.add(&#x27;String#indexOf&#x27;, function() {
-&#x27;Hello World!&#x27;.<span class="apidocCodeKeywordSpan">indexOf</span>(&#x27;o&#x27;) &#x3e; -1;
-})
-// add listeners
-.on(&#x27;cycle&#x27;, function(event) {
-console.log(String(event.target));
-})
-.on(&#x27;complete&#x27;, function() {
-console.log(&#x27;Fastest is &#x27; + this.filter(&#x27;fastest&#x27;).map(&#x27;name&#x27;));
+var index;
+if (typeof listeners == &#x27;string&#x27;) {
+  type = listeners;
+  listeners = _.has(events, type) &#x26;&#x26; events[type];
+}
+if (listeners) {
+  if (listener) {
+    index = _.<span class="apidocCodeKeywordSpan">indexOf</span>(listeners, listener);
+    if (index &#x3e; -1) {
+      listeners.splice(index, 1);
+    }
+  } else {
+    listeners.length = 0;
+  }
+}
 ...</pre></li>
     </ul>
 
@@ -2043,22 +2042,21 @@ _.forOwn(options, function(value, key) {
   return _.filter(array, callback);
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
-  &#x27;Hello World!&#x27;.indexOf(&#x27;o&#x27;) &#x3e; -1;
-})
-// add listeners
-.on(&#x27;cycle&#x27;, function(event) {
-  console.log(String(event.target));
-})
-.on(&#x27;complete&#x27;, function() {
-  console.log(&#x27;Fastest is &#x27; + this.<span class="apidocCodeKeywordSpan">filter</span>(&#x27;fastest&#x27;).map(&#x27;name
-&#x27;));
-})
-// run async
-.run({ &#x27;async&#x27;: true });
-
-// logs:
-// =&#x3e; RegExp#test x 4,161,532 +-0.99% (59 cycles)
-// =&#x3e; String#indexOf x 6,139,623 +-1.00% (131 cycles)
+* @memberOf Benchmark
+* @param {Array} array The array to iterate over.
+* @param {Function|string} callback The function/alias called per iteration.
+* @returns {Array} A new array of values that passed callback filter.
+* @example
+*
+* // get odd numbers
+* Benchmark.<span class="apidocCodeKeywordSpan">filter</span>([1, 2, 3, 4, 5], function(n) {
+*   return n % 2;
+* }); // -&#x3e; [1, 3, 5];
+*
+* // get fastest benchmarks
+* Benchmark.filter(benches, &#x27;fastest&#x27;);
+*
+* // get slowest benchmarks
 ...</pre></li>
     </ul>
 
@@ -2178,21 +2176,21 @@ function getFirstArgument(fn) {
   return baseIndexOf(array, value, index);
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
-var suite = new Benchmark.Suite;
-
-// add tests
-suite.add(&#x27;RegExp#test&#x27;, function() {
-/o/.test(&#x27;Hello World!&#x27;);
-})
-.add(&#x27;String#indexOf&#x27;, function() {
-&#x27;Hello World!&#x27;.<span class="apidocCodeKeywordSpan">indexOf</span>(&#x27;o&#x27;) &#x3e; -1;
-})
-// add listeners
-.on(&#x27;cycle&#x27;, function(event) {
-console.log(String(event.target));
-})
-.on(&#x27;complete&#x27;, function() {
-console.log(&#x27;Fastest is &#x27; + this.filter(&#x27;fastest&#x27;).map(&#x27;name&#x27;));
+var index;
+if (typeof listeners == &#x27;string&#x27;) {
+  type = listeners;
+  listeners = _.has(events, type) &#x26;&#x26; events[type];
+}
+if (listeners) {
+  if (listener) {
+    index = _.<span class="apidocCodeKeywordSpan">indexOf</span>(listeners, listener);
+    if (index &#x3e; -1) {
+      listeners.splice(index, 1);
+    }
+  } else {
+    listeners.length = 0;
+  }
+}
 ...</pre></li>
     </ul>
 
@@ -2951,21 +2949,21 @@ options.onCycle.call(benches, cycleEvent);
   return object;
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
-suite.add(&#x27;RegExp#test&#x27;, function() {
-  /o/.test(&#x27;Hello World!&#x27;);
-})
-.add(&#x27;String#indexOf&#x27;, function() {
-  &#x27;Hello World!&#x27;.indexOf(&#x27;o&#x27;) &#x3e; -1;
-})
-// add listeners
-.<span class="apidocCodeKeywordSpan">on</span>(&#x27;cycle&#x27;, function(event) {
-  console.log(String(event.target));
-})
-.on(&#x27;complete&#x27;, function() {
-  console.log(&#x27;Fastest is &#x27; + this.filter(&#x27;fastest&#x27;).map(&#x27;name&#x27;));
-})
-// run async
-.run({ &#x27;async&#x27;: true });
+  options = object.options = _.assign({}, cloneDeep(object.constructor.options), cloneDeep(options));
+
+  _.forOwn(options, function(value, key) {
+    if (value != null) {
+      // Add event listeners.
+      if (/^on[A-Z]/.test(key)) {
+        _.each(key.split(&#x27; &#x27;), function(key) {
+          object.<span class="apidocCodeKeywordSpan">on</span>(key.slice(2).toLowerCase(), value);
+        });
+      } else if (!_.has(object, key)) {
+        object[key] = cloneDeep(value);
+      }
+    }
+  });
+}
 ...</pre></li>
     </ul>
 
@@ -3111,20 +3109,22 @@ if (!event.cancelled || resetting) {
   return bench;
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
-.on(&#x27;cycle&#x27;, function(event) {
-  console.log(String(event.target));
-})
-.on(&#x27;complete&#x27;, function() {
-  console.log(&#x27;Fastest is &#x27; + this.filter(&#x27;fastest&#x27;).map(&#x27;name&#x27;));
-})
-// run async
-.<span class="apidocCodeKeywordSpan">run</span>({ &#x27;async&#x27;: true });
+     */
+    function resolve() {
+var deferred = this,
+    clone = deferred.benchmark,
+    bench = clone._original;
 
-// logs:
-// =&#x3e; RegExp#test x 4,161,532 +-0.99% (59 cycles)
-// =&#x3e; String#indexOf x 6,139,623 +-1.00% (131 cycles)
-// =&#x3e; Fastest is String#indexOf
-```
+if (bench.aborted) {
+  // cycle() -&#x3e; clone cycle/complete event -&#x3e; compute()&#x27;s invoked bench.<span class="apidocCodeKeywordSpan">run</
+span>() cycle/complete.
+  deferred.teardown();
+  clone.running = false;
+  cycle(deferred);
+}
+else if (++deferred.cycles &#x3c; clone.count) {
+  clone.compiled.call(deferred, context, timer);
+}
 ...</pre></li>
     </ul>
 
@@ -3458,21 +3458,21 @@ else if ((suite.aborted || suite.running) &#x26;&#x26;
   return suite;
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
-
-Usage example:
-
-```js
-var suite = new Benchmark.Suite;
-
-// add tests
-suite.<span class="apidocCodeKeywordSpan">add</span>(&#x27;RegExp#test&#x27;, function() {
-  /o/.test(&#x27;Hello World!&#x27;);
-})
-.add(&#x27;String#indexOf&#x27;, function() {
-  &#x27;Hello World!&#x27;.indexOf(&#x27;o&#x27;) &#x3e; -1;
-})
-// add listeners
-.on(&#x27;cycle&#x27;, function(event) {
+* @param {string} name A name to identify the benchmark.
+* @param {Function|string} fn The test to benchmark.
+* @param {Object} [options={}] Options object.
+* @returns {Object} The suite instance.
+* @example
+*
+* // basic usage
+* suite.<span class="apidocCodeKeywordSpan">add</span>(fn);
+*
+* // or using a name first
+* suite.add(&#x27;foo&#x27;, fn);
+*
+* // or with options
+* suite.add(&#x27;foo&#x27;, fn, {
+*   &#x27;onCycle&#x27;: onCycle,
 ...</pre></li>
     </ul>
 
@@ -3616,22 +3616,21 @@ options.onCycle.call(benches, cycleEvent);
   return result;
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
-  &#x27;Hello World!&#x27;.indexOf(&#x27;o&#x27;) &#x3e; -1;
-})
-// add listeners
-.on(&#x27;cycle&#x27;, function(event) {
-  console.log(String(event.target));
-})
-.on(&#x27;complete&#x27;, function() {
-  console.log(&#x27;Fastest is &#x27; + this.<span class="apidocCodeKeywordSpan">filter</span>(&#x27;fastest&#x27;).map(&#x27;name
-&#x27;));
-})
-// run async
-.run({ &#x27;async&#x27;: true });
-
-// logs:
-// =&#x3e; RegExp#test x 4,161,532 +-0.99% (59 cycles)
-// =&#x3e; String#indexOf x 6,139,623 +-1.00% (131 cycles)
+* @memberOf Benchmark
+* @param {Array} array The array to iterate over.
+* @param {Function|string} callback The function/alias called per iteration.
+* @returns {Array} A new array of values that passed callback filter.
+* @example
+*
+* // get odd numbers
+* Benchmark.<span class="apidocCodeKeywordSpan">filter</span>([1, 2, 3, 4, 5], function(n) {
+*   return n % 2;
+* }); // -&#x3e; [1, 3, 5];
+*
+* // get fastest benchmarks
+* Benchmark.filter(benches, &#x27;fastest&#x27;);
+*
+* // get slowest benchmarks
 ...</pre></li>
     </ul>
 
@@ -3667,21 +3666,21 @@ options.onCycle.call(benches, cycleEvent);
   return func.apply(_, args);
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
-var suite = new Benchmark.Suite;
-
-// add tests
-suite.add(&#x27;RegExp#test&#x27;, function() {
-/o/.test(&#x27;Hello World!&#x27;);
-})
-.add(&#x27;String#indexOf&#x27;, function() {
-&#x27;Hello World!&#x27;.<span class="apidocCodeKeywordSpan">indexOf</span>(&#x27;o&#x27;) &#x3e; -1;
-})
-// add listeners
-.on(&#x27;cycle&#x27;, function(event) {
-console.log(String(event.target));
-})
-.on(&#x27;complete&#x27;, function() {
-console.log(&#x27;Fastest is &#x27; + this.filter(&#x27;fastest&#x27;).map(&#x27;name&#x27;));
+var index;
+if (typeof listeners == &#x27;string&#x27;) {
+  type = listeners;
+  listeners = _.has(events, type) &#x26;&#x26; events[type];
+}
+if (listeners) {
+  if (listener) {
+    index = _.<span class="apidocCodeKeywordSpan">indexOf</span>(listeners, listener);
+    if (index &#x3e; -1) {
+      listeners.splice(index, 1);
+    }
+  } else {
+    listeners.length = 0;
+  }
+}
 ...</pre></li>
     </ul>
 
@@ -3842,21 +3841,21 @@ options.onCycle.call(benches, cycleEvent);
   return object;
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
-suite.add(&#x27;RegExp#test&#x27;, function() {
-  /o/.test(&#x27;Hello World!&#x27;);
-})
-.add(&#x27;String#indexOf&#x27;, function() {
-  &#x27;Hello World!&#x27;.indexOf(&#x27;o&#x27;) &#x3e; -1;
-})
-// add listeners
-.<span class="apidocCodeKeywordSpan">on</span>(&#x27;cycle&#x27;, function(event) {
-  console.log(String(event.target));
-})
-.on(&#x27;complete&#x27;, function() {
-  console.log(&#x27;Fastest is &#x27; + this.filter(&#x27;fastest&#x27;).map(&#x27;name&#x27;));
-})
-// run async
-.run({ &#x27;async&#x27;: true });
+  options = object.options = _.assign({}, cloneDeep(object.constructor.options), cloneDeep(options));
+
+  _.forOwn(options, function(value, key) {
+    if (value != null) {
+      // Add event listeners.
+      if (/^on[A-Z]/.test(key)) {
+        _.each(key.split(&#x27; &#x27;), function(key) {
+          object.<span class="apidocCodeKeywordSpan">on</span>(key.slice(2).toLowerCase(), value);
+        });
+      } else if (!_.has(object, key)) {
+        object[key] = cloneDeep(value);
+      }
+    }
+  });
+}
 ...</pre></li>
     </ul>
 
@@ -4059,20 +4058,22 @@ if (!event.cancelled || resetting) {
   return suite;
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
-.on(&#x27;cycle&#x27;, function(event) {
-  console.log(String(event.target));
-})
-.on(&#x27;complete&#x27;, function() {
-  console.log(&#x27;Fastest is &#x27; + this.filter(&#x27;fastest&#x27;).map(&#x27;name&#x27;));
-})
-// run async
-.<span class="apidocCodeKeywordSpan">run</span>({ &#x27;async&#x27;: true });
+     */
+    function resolve() {
+var deferred = this,
+    clone = deferred.benchmark,
+    bench = clone._original;
 
-// logs:
-// =&#x3e; RegExp#test x 4,161,532 +-0.99% (59 cycles)
-// =&#x3e; String#indexOf x 6,139,623 +-1.00% (131 cycles)
-// =&#x3e; Fastest is String#indexOf
-```
+if (bench.aborted) {
+  // cycle() -&#x3e; clone cycle/complete event -&#x3e; compute()&#x27;s invoked bench.<span class="apidocCodeKeywordSpan">run</
+span>() cycle/complete.
+  deferred.teardown();
+  clone.running = false;
+  cycle(deferred);
+}
+else if (++deferred.cycles &#x3c; clone.count) {
+  clone.compiled.call(deferred, context, timer);
+}
 ...</pre></li>
     </ul>
 
