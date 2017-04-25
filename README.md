@@ -1,6 +1,6 @@
 # npmdoc-benchmark
 
-#### api documentation for  [benchmark (v2.1.4)](https://benchmarkjs.com/)  [![npm package](https://img.shields.io/npm/v/npmdoc-benchmark.svg?style=flat-square)](https://www.npmjs.org/package/npmdoc-benchmark) [![travis-ci.org build-status](https://api.travis-ci.org/npmdoc/node-npmdoc-benchmark.svg)](https://travis-ci.org/npmdoc/node-npmdoc-benchmark)
+#### basic api documentation for  [benchmark (v2.1.4)](https://benchmarkjs.com/)  [![npm package](https://img.shields.io/npm/v/npmdoc-benchmark.svg?style=flat-square)](https://www.npmjs.org/package/npmdoc-benchmark) [![travis-ci.org build-status](https://api.travis-ci.org/npmdoc/node-npmdoc-benchmark.svg)](https://travis-ci.org/npmdoc/node-npmdoc-benchmark)
 
 #### A benchmarking library that supports high-resolution timers & returns statistically significant results.
 
@@ -89,7 +89,8 @@
         "doc": "docdown benchmark.js doc/README.md style=github title=\"<a href=\\\"https://benchmarkjs.com/\\\">Benchmark.js</a> <span>v${npm_package_version}</span>\" toc=categories url=https://github.com/bestiejs/benchmark.js/blob/${npm_package_version}/benchmark.js",
         "test": "node test/test"
     },
-    "version": "2.1.4"
+    "version": "2.1.4",
+    "bin": {}
 }
 ```
 
